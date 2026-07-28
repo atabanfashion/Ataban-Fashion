@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATABAN - Modern Modesty for Everyone</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === VARIABEL WARNA & FONT === */
+        :root {
+            --bg-color: #050505;
+            --text-color: #ffffff;
+            --gold: #D4AF37;
+            --gold-hover: #F3E5AB;
+            --dark-gray: #121212;
+            --card-bg: rgba(26, 26, 26, 0.6);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        /* === CUSTOM SCROLLBAR === */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-hover);
+        }
+
+        /* === RESET & DASAR === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        ul {
+            list-style: none;
+        }
+        
+        /* === ANIMASI CSS PROFESIONAL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* === EDIT MODE BUTTON === */
+        .admin-edit-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #744a4a, #ff3333);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 9999;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: none;
+        }
+        .admin-edit-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+        }
+        .edit-active {
+            border: 1px dashed var(--gold) !important;
+            background-color: rgba(212, 175, 55, 0.1);
+            min-height: 20px;
+            border-radius: 4px;
+            padding: 2px;
+        }
+
+        /* === NAVIGASI UTILITAS (Glassmorphism) === */
+        .utility-nav {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 5%;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .utility-nav .search-bar {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            position: relative;
+        }
+        .utility-nav input {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px 4px 0 0;
+            outline: none;
+            transition: all 0.4s ease;
+            width: 160px;
+            font-family: var(--font-body);
+        }
+        .utility-nav input:focus {
+            width: 220px;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--gold);
+        }
+        .utility-links {
+            display: flex;
+            align-items: center;
+        }
+        .utility-links a {
+            margin-left: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+        .utility-links a:hover {
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        /* === NAVIGASI UTAMA === */
+        header {
+            background-color: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+        .logo img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+        }
+        .logo img:hover {
+            transform: scale(1.08) rotate(-1deg);
+        }
+
+        /* Tombol hamburger default sembunyi di desktop/laptop */
+        .hamburger-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 35px;
+        }
+        .main-nav a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 5px 0;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            box-shadow: 0 0 8px var(--gold);
+        }
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        .main-nav a:hover {
+            color: var(--gold);
+        }
+
+        /* DROPDOWN SUB-MENU UTAMA */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(18, 18, 18, 0.98);
+            backdrop-filter: blur(12px);
+            min-width: 280px;
+            box-shadow: 0px 15px 35px rgba(0,0,0,0.9);
+            z-index: 1;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(15px);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-category {
+            margin-bottom: 12px;
+        }
+        .dropdown-category:last-child {
+            margin-bottom: 0;
+        }
+        .dropdown-title {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 5px;
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+            padding-bottom: 4px;
+            font-family: var(--font-heading);
+        }
+        .dropdown-content a {
+            color: #ccc;
+            padding: 6px 12px 6px 18px;
+            display: block;
+            border-bottom: none;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+        }
+        .dropdown-content a:hover {
+            background-color: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+            padding-left: 24px;
+        }
+
+        /* PENGATURAN KHUSUS LAYAR HP (Hanya aktif jika lebar layar di bawah 576px) */
+        @media screen and (max-width: 576px) {
+            .hamburger-menu {
+                display: block; 
+                cursor: pointer;
+            }
+
+            .main-nav {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%; 
+                left: 0;
+                background-color: #000000;
+                box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .main-nav.active {
+                display: block !important;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                padding: 20px;
+                list-style: none;
+            }
+
+            .main-nav ul li {
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .main-nav a {
+                color: #ffffff !important;
+                font-size: 1rem;
+            }
+
+            .utility-nav { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 15px; 
+                padding: 15px 5%; 
+            }
+            .utility-nav input { 
+                width: 100%; 
+                margin-top: 10px; 
+                text-align: center; 
+            }
+            .section-title { 
+                font-size: 2.2rem; 
+            }
+            .hero h2 { 
+                font-size: 2.5rem; 
+            }
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            width: 100%;
+            height: 85vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(5,5,5,1) 100%), url('images/logoweb.png') center/contain no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-color), transparent);
+        }
+        .hero h1 {
+            color: rgba(212, 175, 55, 1);;; 
+            font-family: var(--font-heading);
+            font-size: 3rem;
+        }
+
+        .hero h2 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 5px 25px rgba(0,0,0,0.9);
+            z-index: 2;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 650px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #e0e0e0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            z-index: 2;
+        }
+
+        /* === SECTIONS UMUM === */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+        }
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            color: var(--text-color);
+            margin-bottom: 60px;
+            letter-spacing: 1.5px;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        /* === TENTANG KAMI === */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .about-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 35px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-top: 3px solid var(--gold);
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .about-box:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+            background: rgba(40, 40, 40, 0.8);
+        }
+        .about-box p {
+            color: #b3b3b3;
+            font-size: 0.95rem;
+        }
+
+        /* === PRODUK & GALERI === */
+        #produk {
+            background: linear-gradient(180deg, var(--bg-color) 0%, var(--dark-gray) 50%, var(--bg-color) 100%);
+        }
+        .category-subtitle {
+            color: var(--gold); 
+            margin: 20px 0 25px; 
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        .product-card {
+            background: var(--card-bg);
+            text-align: center;
+            padding-bottom: 25px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.7s ease;
+            z-index: 1;
+        }
+        .product-card:hover::before {
+            left: 150%;
+        }
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.7s ease;
+            display: block;
+        }
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+        .img-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;   
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+        }
+        .img-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(to top, var(--card-bg), transparent);
+            pointer-events: none;
+        }
+        /* Styling untuk Container dan Gambar Galeri */
+    .gallery-item {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        background-color: var(--card-bg, #1a1a1a);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gallery-img {
+        width: 100%;
+        height: auto; /* Mengikuti proporsi asli foto */
+        max-height: 400px; /* Batas maksimal tinggi di layar besar */
+        object-fit: contain; /* Menampilkan foto secara utuh tanpa terpotong */
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover .gallery-img {
+        transform: scale(1.05); /* Efek zoom halus saat kursor diarahkan */
+    }
+        .wishlist-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 10;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .wishlist-icon:hover {
+            color: var(--text-color);
+            transform: scale(1.2);
+        }
+        .wishlist-icon.active {
+            color: var(--gold);
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px var(--gold));
+        }
+        .product-card h3 {
+            margin: 20px 0 8px;
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+        .product-card p {
+            color: #ccc;
+            font-weight: 300;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Pilihan Warna Swatches */
+        .color-swatches {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+            padding-bottom: 5px;
+            position: relative;
+            z-index: 2;
+        }
+        .swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+        }
+        .swatch:hover, .swatch.active {
+            transform: scale(1.25);
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* === POPUP MODAL AKUN === */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s ease;
+        }
+        .modal-content {
+            background: linear-gradient(145deg, var(--dark-gray), #1a1a1a);
+            padding: 50px 40px;
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 50px rgba(212,175,55,0.15);
+        }
+        .modal-content h2 {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            outline: none;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+        }
+        .modal-content input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            background: rgba(0,0,0,0.8);
+        }
+        .modal-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--gold), #b89020);
+            color: #000;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .modal-btn:hover {
+            background: linear-gradient(45deg, var(--gold-hover), var(--gold));
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #888;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .close-modal:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: #030303;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px 5% 30px;
+            position: relative;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .footer-col h4 {
+            color: var(--text-color);
+            margin-bottom: 30px;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+            bottom: -8px;
+            left: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 15px;
+            color: #a0a0a0;
+        }
+        .footer-col ul li a {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .footer-col ul li a:hover {
+            color: var(--gold);
+            padding-left: 10px;
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin-right: 12px;
+            color: white;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-icons a:hover {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            transform: translateY(-8px) rotate(8deg);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: #666;
+            letter-spacing: 1px;
+        }
+        .kontak.section {
+            padding: 20px 10px; 
+            min-height: auto;
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol Mode Edit (Simulasi CMS) -->
+    <div class="admin-edit-btn" onclick="toggleEditMode()" id="editBtn">
+        <i class="fas fa-pen"></i> Mode Edit: OFF
+    </div>
+
+    <!-- Input File Tersembunyi untuk Ganti Gambar -->
+    <input type="file" id="imageUploader" accept="image/*" style="display: none;">
+
+    <!-- NAVIGASI UTILITAS -->
+    <div class="utility-nav">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Cari produk..." class="editable-text">
+            <i class="fas fa-search" style="color: var(--gold); margin-left: 10px;"></i>
+        </div>
+        <div class="utility-links">
+            <a id="btnAkun"><i class="fas fa-user"></i> <span class="editable-text">Akun Saya</span></a>
+            <a href="#wishlist"><i class="fas fa-heart"></i> <span class="editable-text">Wishlist (<span id="wishlistCount">0</span>)</span></a>
+        </div>
+    </div>
+
+    <!-- NAVIGASI UTAMA -->
+    <header>
+        <div class="logo">
+            <img src="images/logoweb.png" alt="logo ataban " class="editable-image" title="Klik untuk ganti logo jika dalam mode edit">
+        </div>
+       
+        <!-- TAMBAHKAN TOMBOL HAMBURGER DI SINI -->
+       <div class="hamburger-menu" id="hamburger-btn">
+           <i class="fas fa-bars"></i> <!-- Menggunakan ikon FontAwesome -->
+       </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#beranda" class="editable-text">Beranda</a></li>
+                <li><a href="#tentang-kami" class="editable-text">Tentang Kami</a></li>
+                <li class="dropdown">
+                    <a href="#produk" class="editable-text">Produk <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <!-- ATASAN WANITA -->
+                        <div class="dropdown-category">
+                            <span class="dropdown-title">Atasan Wanita</span>
+                            <a href="#kategori-kemeja">Kemeja</a>
+                            <a href="#kategori-blazer">Blazer / Jas</a>
+                            <a href="#kategori-blouse">Blouse</a>
+                            <a href="#kategori-tunik">Tunik</a>
+                        </div>
+                        <!-- BAWAHAN WANITA -->
+                        <div class="dropdown-category">
+                            <span class="dropdown-title">Bawahan Wanita</span>
+                            <a href="#kategori-rok">Rok</a>
+                            <a href="#kategori-celana">Celana</a>
+                        </div>
+                        <!-- FASHION MUSLIM -->
+                        <div class="dropdown-category">
+                            <span class="dropdown-title">Fashion Muslim</span>
+                            <a href="#kategori-gamis">Gamis</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#galeri" class="editable-text">Galeri</a></li>
+                <li><a href="#kontak" class="editable-text">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BERANDA (HERO) -->
+    <section id="beranda" class="hero editable-bg">
+        <h1 class="editable-text reveal">Modern Modesty for Everyone</h1>
+        <p class="editable-text reveal">Menghadirkan keanggunan sejati melalui material premium dan desain elegan untuk wanita modern.</p>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang-kami" class="section">
+        <h2 class="section-title editable-text reveal">Tentang Kami</h2>
+        <div class="about-grid">
+            <div class="about-box reveal">
+                <i class="fas fa-building fa-3x" style="color: var(--gold); margin-bottom:20px;"></i>
+                <h3 class="editable-text" style="color: var(--gold);">Profil Perusahaan</h3>
+                <p class="editable-text">ATABAN Fashion merupakan brand office wear dan fashion muslim di bawah naungan CV. Berkah Ahda Sabila dengan pengalaman lebih dari 17 tahun di industri garmen. Berawal dari BAS Fashion pada tahun 2024, ATABAN kini hadir sebagai brand yang telah resmi terdaftar di DJKI.
+
+</p>
+            </div>
+            <div class="about-box reveal">
+                <i class="fas fa-gem fa-3x" style="color: var(--gold); margin-bottom:20px;"></i>
+                <h3 class="editable-text" style="color: var(--gold);">Visi</h3>
+                <p class="editable-text">Menjadi brand office wear dan fashion muslim Indonesia yang terpercaya dengan menghadirkan produk berkualitas tinggi, elegan, nyaman, dan mampu bersaing di pasar nasional maupun internasional.</p>
+            </div>
+            <div class="about-box reveal">
+                <i class="fas fa-handshake fa-3x" style="color: var(--gold); margin-bottom:20px;"></i>
+                <h3 class="editable-text" style="color: var(--gold);">Misi</h3>
+                <p class="editable-text"> Menghasilkan produk fashion dengan kualitas terbaik,
+Mengutamakan kenyamanan dan kepuasan pelanggan, 
+Mengembangkan inovasi desain yang mengikuti perkembangan fashion, 
+Menjalankan bisnis secara profesional dengan mengedepankan integritas, 
+Membangun merek Indonesia yang memiliki daya saing tinggi. 
+</p>
+            </div>
+            <div class="about-box reveal">
+                <i class="fas fa-eye fa-3x" style="color: var(--gold); margin-bottom:20px;"></i>
+                <h3 class="editable-text" style="color: var(--gold);">Filosofi Brand</h3>
+                <p class="editable-text">ATABAN percaya bahwa setiap Wanita berhak tampil percaya diri dengan busana yang memadukan kesederhanaan, keanggunan, dan kenyamanan. Melalui setiap koleksi ATABAN menghadirkan fashion yang tidak hanya mengikuti tren, tetapi juga memiliki nilai fungsional dan kualitas yang dapat diandalkan.</p>
+            </div>
+            <div class="about-box reveal">
+                <i class="fas fa-bullseye fa-3x" style="color: var(--gold); margin-bottom:20px;"></i>
+                <h3 class="editable-text" style="color: var(--gold);">Nilai-Nilai Perusahaan</h3>
+                <p class="editable-text">Integritas, Kualitas, Inovasi, Kepuasan pelanggan, dan Keberlanjutan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUK -->
+    <section id="produk" class="section">
+        <h2 class="section-title editable-text reveal">Koleksi Produk</h2>
+        
+        <!-- ATASAN WANITA -->
+        <h3 class="editable-text reveal" style="color: white; margin-bottom: 10px; text-align:center;">Atasan Wanita</h3>
+        
+        <!-- Kemeja -->
+        <div id="kategori-kemeja" style="padding-top: 20px;">
+            <h4 class="category-subtitle reveal"> Kemeja</h4>
+            <div class="product-grid" style="margin-bottom: 40px;">
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="images/keira.png" alt="Kemeja" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Keira Shirt</h3>
+                    <p class="editable-text"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blazer / Jas -->
+        <div id="kategori-blazer" style="padding-top: 20px;">
+            <h4 class="category-subtitle reveal">Blazer / Jas</h4>
+            <div class="product-grid" style="margin-bottom: 40px;">
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="images/" alt="Blazer Luxe" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Cooming Soon</h3>
+                    <p class="editable-text"></p>
+                </div>
+            </div>
+        </div>
+
+        <!--Blouse (Baru) -->
+        <div id="kategori-blouse" style="padding-top: 20px;">
+            <h4 class="category-subtitle reveal">Blouse</h4>
+            <div class="product-grid" style="margin-bottom: 40px;">
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="images/niki.png" alt="Blouse Chiffon" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Blouse Niki</h3>
+                    <p class="editable-text"></p>
+                </div>
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="images/vania.png" alt="Blouse Organza" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Blouse Vania</h3>
+                    <p class="editable-text"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tunik (Ahda, Atmim 1, Sabila) -->
+        <div id="kategori-tunik" style="padding-top: 20px;">
+            <h4 class="category-subtitle reveal">Tunik</h4>
+            <div class="product-grid" style="margin-bottom: 60px;">
+                <!-- Tunik Ahda -->
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-ahda" src="images/niki.png" alt="Tunik Ahda" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Tunik Ahda</h3>
+                    <p class="editable-text"></p>
+                    <div class="color-swatches">
+                        <div class="swatch active" style="background-color: #8b2f51;" title="Maroon" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                        <div class="swatch" style="background-color: #d4b064;" title="Khaki" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                        <div class="swatch" style="background-color: #ddc6b1;" title="Coksu" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                        <div class="swatch" style="background-color: #ffffff;" title="Putih Tulang" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                        <div class="swatch" style="background-color: #ddd181;" title="Olive" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                        <div class="swatch" style="background-color: #b9d6bf;" title="Sage" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                        <div class="swatch" style="background-color: #d4ebd9;" title="Mint" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                        <div class="swatch" style="background-color: #a294b6;" title="Ungu" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                        <div class="swatch" style="background-color: #c4aca2;" title="Cokelat" onclick="changeImage('img-ahda', 'images/niki.png', this)"></div> 
+                    </div>
+                </div>
+
+                <!-- Tunik Atmim Series 1-->
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-atmim" src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop" alt="Tunik Atmim" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Tunik Atmim series 1</h3>
+                    <p class="editable-text"></p>
+                    <div class="color-swatches">
+                        <div class="swatch active" style="background-color: #6a91d3;" title="Niagara" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #a56e6e;" title="Brown Milo" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #1d3874;" title="Navy" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #cf967b;" title="Coffe Milk" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #b950b9;" title="Lavender" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #6bb18a;" title="Hijau Tosca" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #8a0137;" title="Maroon" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #484b2d;" title="Olive" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #f2aecb;" title="Pink" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #ffffff;" title="Putih Tulang" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #dfbd3a;" title="Mustard" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #afa472;" title="Army" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #d2691e;" title="Merah Bata 1" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                    </div>
+                </div>
+
+                 <!-- Tunik Atmim Series 2 -->
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-atmim" src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop" alt="Tunik Atmim" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Tunik Atmim series 2</h3>
+                    <p class="editable-text"></p>
+                    <div class="color-swatches">
+                        <div class="swatch active" style="background-color: #F4D1D8;" title="Peach" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #4ebd85;" title="Sage" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #bbbfc2;" title="Abu Muda" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #646662;" title="Abu Tua" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #1B4D8a;" title="Biru Denim 1" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #1B4D8E;" title="Biru Denim 2" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #1B4D3E;" title="Hijau Botol" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #D8A49D;" title="Salem" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #8A1C14;" title="Merah Cabe" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #B84A39;" title="Merah Bata 2" onclick="changeImage('img-atmim', 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                    </div>
+                </div>
+
+                <!-- Tunik Sabila -->
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-sabila" src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=1000&auto=format&fit=crop" alt="Tunik Sabila" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Tunik Sabila</h3>
+                    <p class="editable-text"></p>
+                    <div class="color-swatches">
+                        <div class="swatch active" style="background-color: #e6c4bc;" title="Coksu" onclick="changeImage('img-sabila', 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #900000;" title="Maroon" onclick="changeImage('img-sabila', 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #dfa4ad;" title="Dusty Pink" onclick="changeImage('img-sabila', 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #1d3874;" title="Navy" onclick="changeImage('img-sabila', 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch active" style="background-color: #a37a77;" title="Milo" onclick="changeImage('img-sabila', 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                        <div class="swatch" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-sabila', 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop', this)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. BAWAHAN WANITA -->
+        <h3 class="editable-text reveal" style="color: white; margin-bottom: 10px; margin-top: 50px; text-align:center;">Bawahan Wanita</h3>
+        
+        <!-- Rok -->
+        <div id="kategori-rok" style="padding-top: 20px;">
+            <h4 class="category-subtitle reveal">Rok</h4>
+            <div class="product-grid" style="margin-bottom: 40px;">
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="https://images.unsplash.com/photo-1574634534894-89d7576c8259?q=80&w=1000&auto=format&fit=crop" alt="Rok" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Nara Skirt</h3>
+                    <p class="editable-text"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Celana -->
+        <div id="kategori-celana" style="padding-top: 20px;">
+            <h4 class="category-subtitle reveal">Celana</h4>
+            <div class="product-grid" style="margin-bottom: 50px;">
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?q=80&w=1000&auto=format&fit=crop" alt="Celana Kulot" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Nala Pants</h3>
+                    <p class="editable-text"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. FASHION MUSLIM (Baru) -->
+        <h3 class="editable-text reveal" style="color: white; margin-bottom: 10px; margin-top: 50px; text-align:center;">Fashion Muslim</h3>
+        
+        <!-- Gamis -->
+        <div id="kategori-gamis" style="padding-top: 20px;">
+            <h4 class="category-subtitle reveal">Gamis</h4>
+            <div class="product-grid">
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop" alt="Gamis Syari" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Olivia Dress</h3>
+                    <p class="editable-text"></p>
+                </div>
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" alt="Gamis Zhafira" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Davia Dress</h3>
+                    <p class="editable-text"></p>
+                </div>
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="images/vania.png" alt="Gamis Brokat" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Elvara Dress</h3>
+                    <p class="editable-text"></p>
+                </div>
+                <div class="product-card reveal item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="images/davia.png" alt="Gamis Brokat" class="editable-image">
+                    </div>
+                    <h3 class="editable-text nama-produk">Zeline Dress</h3>
+                    <p class="editable-text"></p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- GALERI -->
+    <section id="galeri" class="section">
+        <h2 class="section-title editable-text reveal">Galeri</h2>
+        <div class="product-grid">
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1509319117193-57bab727e09d?q=80&w=1000&auto=format&fit=crop" alt="Galeri" class="editable-image gallery-img">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1509319117193-57bab727e09d?q=80&w=1000&auto=format&fit=crop" alt="Galeri" class="editable-image gallery-img">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1509319117193-57bab727e09d?q=80&w=1000&auto=format&fit=crop" alt="Galeri" class="editable-image gallery-img">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1509319117193-57bab727e09d?q=80&w=1000&auto=format&fit=crop" alt="Galeri" class="editable-image gallery-img">
+            </div>
+        </div>
+    </section>
+
+     <!-- KONTAK -->
+    <section id="kontak" class="section">
+        <h2 class="section-title editable-text reveal">Kontak</h2>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col reveal">
+                <h4 class="editable-text">Layanan Pelanggan</h4>
+                <ul>
+                    <li><a href="https://wa.me/6285256888834?text=Halo%20ATABAN,%20saya%20butuh%20info%20Panduan%20Ukuran" target="_blank" class="editable-text">Panduan Ukuran</a></li>
+                    <li><a href="#faq" class="editable-text">FAQ</a></li>
+                    <li><a href="https://wa.me/6285256888834?text=Halo%20ATABAN,%20saya%20tertarik%20untuk%20Kemitraan" target="_blank" class="editable-text">Kemitraan</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col reveal">
+                <h4 class="editable-text">Interaksi</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/ataban_fashion?igsh=ZGhzY2pzdzQ3ZzJ2" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@ataban.fashion_official" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com/@atabanfashion" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/6285256888834" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://shopee.co.id/ataban_fashion" target="_blank" title="Shopee"><i class="fas fa-shopping-bag"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col reveal">
+                <h4 class="editable-text">Alamat</h4>
+                <p class="editable-text">Kampunganyar, Kalikalong<br>Kec. Tayu, Kabupaten Pati<br>Jawa Tengah 59155, Indonesia</p>
+                <a href="https://maps.app.goo.gl/2WtnF4jFpc3VBJjy5" target="_blank" style="color: var(--gold); display:block; margin-top:10px;"><i class="fas fa-map-marker-alt"></i> Buka di Google Maps</a>
+            </div>
+            <div class="footer-col reveal">
+                <h4 class="editable-text">Email</h4>
+                <p class="editable-text">atabanfashion@gmail.com</p>
+                <a href="atabanfashion@gmail.com" target="_blank" style="color: var(--gold); display:block; margin-top:10px;"><i class="fas fa-email-marker-alt"></i>
+            </div>
+         <div class="copyright">
+             <p>&copy;2026 ATABAN Fashion by CV Berkah Ahda Sabila. All Rights Reserved.</p> 
+        </div>
+     </footer>
+
+    <!-- MODAL AKUN SAYA -->
+    <div id="modalAkun" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Login ke ATABAN</h2>
+            <input type="email" placeholder="Email Anda" required>
+            <input type="password" placeholder="Password" required>
+            <button class="modal-btn" onclick="alert('Login berhasil disimulasikan!')">Masuk</button>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #888;">Belum punya akun? <a href="#" style="color: var(--gold);">Daftar di sini</a></p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 0. Fungsionalitas Tombol Hamburger (Mobile Menu)
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mainNav = document.querySelector('.main-nav');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Pengecekan Link Rahasia untuk Memunculkan Tombol Edit
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('adminXkalong') === 'true') {
+                document.getElementById('editBtn').style.display = 'block';
+            }
+        });
+        // 1. ANIMASI SCROLL
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++){
+                var windowHeight = window.innerHeight;
+                var revealTop = reveals[i].getBoundingClientRect().top;
+                var revealPoint = 100;
+                if(revealTop < windowHeight - revealPoint){
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // 2. FUNGSI PENCARIAN
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            let filterText = e.target.value.toLowerCase();
+            let produkItems = document.querySelectorAll('.item-produk');
+            
+            produkItems.forEach(function(item) {
+                let judulProduk = item.querySelector('.nama-produk').innerText.toLowerCase();
+                if(judulProduk.indexOf(filterText) > -1) {
+                    item.style.display = "";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+            
+            if(filterText.length > 0) {
+                document.getElementById('produk').scrollIntoView({behavior: "smooth"});
+            }
+        });
+
+        // 3. FUNGSI WISHLIST
+        let totalWishlist = 0;
+        function toggleWishlist(element) {
+            element.classList.toggle('active');
+            if(element.classList.contains('active')) {
+                totalWishlist++;
+                element.style.transform = "scale(1.5)";
+                setTimeout(() => element.style.transform = "scale(1.2)", 200);
+            } else {
+                totalWishlist--;
+            }
+            document.getElementById('wishlistCount').innerText = totalWishlist;
+        }
+
+        // 4. FUNGSI MODAL AKUN SAYA
+        const modal = document.getElementById('modalAkun');
+        document.getElementById('btnAkun').addEventListener('click', function() {
+            modal.style.display = "flex";
+        });
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // 5. FUNGSI GANTI GAMBAR WARNA (SWATCH) UNTUK TUNIK
+        function changeImage(imageId, newSrc, swatchElement) {
+            document.getElementById(imageId).src = newSrc;
+            let swatches = swatchElement.parentElement.getElementsByClassName('swatch');
+            for (let i = 0; i < swatches.length; i++) {
+                swatches[i].classList.remove('active');
+            }
+            swatchElement.classList.add('active');
+        }
+
+        // 6. FITUR EDIT TANPA CODING (CMS Frontend)
+        let isEditMode = false;
+        let currentImageElement = null;
+
+        function toggleEditMode() {
+             // Jika mode edit sedang OFF dan ingin di-aktifkan, minta password terlebih dahulu
+            if (!isEditMode) {
+                let password = prompt("Masukkan Password Admin:");
+                
+                // Ganti teks "ataban2026" di bawah ini dengan password pilihan rahasia Anda
+                if (password !== "Xkalong4_2") {
+                    if (password !== null) { // Jika user menekan OK tapi password salah
+                        alert("Password salah! Akses ditolak.");
+                    }
+                    return; // Batalkan proses pengaktifan edit mode
+                }
+            }
+                 
+            isEditMode = !isEditMode;
+            const btn = document.getElementById('editBtn');
+            const editableTexts = document.querySelectorAll('.editable-text');
+            const editableImages = document.querySelectorAll('.editable-image');
+
+            if (isEditMode) {
+                btn.innerHTML = '<i class="fas fa-save"></i> Mode Edit: ON (Klik teks/foto untuk ubah)';
+                btn.style.background = 'green';
+                
+                editableTexts.forEach(el => {
+                    el.setAttribute('contenteditable', 'true');
+                    el.classList.add('edit-active');
+                });
+
+                editableImages.forEach(img => {
+                    img.classList.add('edit-active');
+                    img.style.cursor = 'pointer';
+                    img.onclick = function() {
+                        currentImageElement = this;
+                        document.getElementById('imageUploader').click();
+                    };
+                });
+                
+                alert("Mode Edit Aktif! \nSilakan klik teks apapun untuk mengetik ulang, atau klik gambar/foto untuk menggantinya.");
+            } else {
+                btn.innerHTML = '<i class="fas fa-pen"></i> Mode Edit: OFF';
+                btn.style.background = 'red';
+                
+                editableTexts.forEach(el => {
+                    el.setAttribute('contenteditable', 'false');
+                    el.classList.remove('edit-active');
+                });
+
+                editableImages.forEach(img => {
+                    img.classList.remove('edit-active');
+                    img.style.cursor = 'default';
+                    img.onclick = null;
+                });
+            }
+        }
+
+        document.getElementById('imageUploader').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file && currentImageElement) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentImageElement.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+            this.value = '';
+        });
+    </script>
+</body>
+</html>
