@@ -8,7 +8,7 @@
     <meta name="description" content="ATABAN Fashion brand office wear dan fashion muslim di bawah naungan CV. Berkah Ahda Sabila.">
     <meta name="google-site-verification" content="O5CYKw42Io8nyYrhtCurJfBfBkuaXyxnec_VIE8b_Wk" />
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -32,7 +32,8 @@
     --border-soft: rgba(255, 255, 255, 0.08);
     --shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
     --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Montserrat', Arial, sans-serif;
+    --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Poppins', system-ui, -apple-system, sans-serif;
     --container: 1180px;
     --radius: 6px;
 }
@@ -422,9 +423,6 @@ header {
     background-color: #050505;
 }
 
-
-/* Gradient bawah agar menyatu dengan section selanjutnya */
-
 .hero::after {
     content: "";
     position: absolute;
@@ -441,18 +439,14 @@ header {
     pointer-events: none;
     z-index: 1;
 }
-/* =========================
-   HERO CONTENT
-   ========================= */
+
 .hero-content {
     width: 100%;
     max-width: 670px;
     position: relative;
     z-index: 2;
 }
-/* =========================
-   SMALL TITLE
-   ========================= */
+
 .hero-eyebrow {
     display: inline-flex;
     align-items: center;
@@ -465,7 +459,7 @@ header {
     letter-spacing: 2.4px;
     text-transform: uppercase;
 }
-/* Gold line */
+
 .hero-eyebrow::before {
     content: "";
     display: block;
@@ -473,9 +467,7 @@ header {
     height: 1px;
     background: #D4AF37;
 }
-/* =========================
-   HERO TITLE
-   ========================= */
+
 .hero h1 {
     max-width: 650px;
     margin: 0 0 22px;
@@ -491,14 +483,11 @@ header {
     letter-spacing: -2px;
     text-shadow: none;
 }
-/* Gold part of title */
 
 .hero h1 .gold-word {
     color: #D4AF37;
 }
-/* =========================
-   HERO DESCRIPTION
-   ========================= */
+
 .hero p {
     max-width: 600px;
     margin: 0 0 32px;
@@ -514,9 +503,7 @@ header {
     letter-spacing: 0;
     text-shadow: none;
 }
-/* =========================
-   HERO BUTTONS
-   ========================= */
+
 .hero-actions {
     display: flex;
     align-items: center;
@@ -525,6 +512,7 @@ header {
     margin-top: 5px;
     margin-bottom: 34px;
 }
+
 .btn-primary,
 .btn-secondary {
     min-height: 49px;
@@ -545,23 +533,23 @@ header {
         border-color 0.25s ease,
         transform 0.25s ease;
 }
-/* GOLD BUTTON */
 
 .btn-primary {
     background: #D4AF37;
     color: #050505;
     border: 1px solid #D4AF37;
 }
+
 .btn-primary i {
     font-size: 0.82rem;
 }
+
 .btn-primary:hover {
     background: #F3E5AB;
     border-color: #F3E5AB;
     color: #050505;
     transform: translateY(-2px);
 }
-/* OUTLINE BUTTON */
 
 .btn-secondary {
     background: rgba(255,255,255,0.01);
@@ -573,6 +561,7 @@ header {
         0.22
     );
 }
+
 .btn-secondary:hover {
     color: #D4AF37;
     border-color: #D4AF37;
@@ -584,9 +573,7 @@ header {
     );
     transform: translateY(-2px);
 }
-/* =========================
-   HERO TRUST INFO
-   ========================= */
+
 .hero-trust {
     width: 100%;
     padding-top: 21px;
@@ -601,6 +588,7 @@ header {
         0.10
     );
 }
+
 .hero-trust span {
     display: inline-flex;
     align-items: center;
@@ -613,26 +601,16 @@ header {
     white-space: nowrap;
 }
 
-
 .hero-trust i {
     color: #D4AF37;
     font-size: 0.86rem;
 }
 
-
-/* =========================================================
-   LAPTOP KECIL / TABLET
-   ========================================================= */
-
 @media screen and (max-width: 980px) {
     .hero {
         min-height: 650px;
         height: auto;
-        padding:
-            90px
-            6%
-            75px;
-
+        padding: 90px 6% 75px;
         background:
             linear-gradient(
                 90deg,
@@ -646,51 +624,31 @@ header {
                 #050505 100%
             ),
             url('images/logoweb.png')
-            right center /
-            58vw auto
-            no-repeat;
+            right center / 58vw auto no-repeat;
     }
-
 
     .hero-content {
         max-width: 600px;
     }
 
-
     .hero h1 {
-        font-size: clamp(
-            3rem,
-            7vw,
-            4.5rem
-        );
+        font-size: clamp(3rem, 7vw, 4.5rem);
     }
-
 
     .hero p {
         max-width: 540px;
     }
 
-
     .hero-trust {
         max-width: 580px;
     }
-
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
 @media screen and (max-width: 576px) {
-
     .hero {
         min-height: 680px;
         height: auto;
-        padding:
-            250px
-            22px
-            55px;
-
+        padding: 250px 22px 55px;
         align-items: flex-end;
         background:
             linear-gradient(
@@ -701,9 +659,7 @@ header {
                 #050505 100%
             ),
             url('images/logoweb.png')
-            center 35px /
-            82vw auto
-            no-repeat;
+            center 35px / 82vw auto no-repeat;
         text-align: left;
     }
 
@@ -716,8 +672,6 @@ header {
         max-width: none;
     }
 
-    /* small text */
-
     .hero-eyebrow {
         margin-bottom: 17px;
         gap: 9px;
@@ -726,36 +680,22 @@ header {
         letter-spacing: 1.55px;
     }
 
-
     .hero-eyebrow::before {
         width: 22px;
     }
 
-
-    /* title */
-
     .hero h1 {
         margin-bottom: 18px;
-        font-size: clamp(
-            2.65rem,
-            12vw,
-            3.7rem
-        );
+        font-size: clamp(2.65rem, 12vw, 3.7rem);
         line-height: 1;
         letter-spacing: -1.3px;
     }
-
-
-    /* description */
 
     .hero p {
         margin-bottom: 24px;
         font-size: 0.91rem;
         line-height: 1.75;
     }
-
-
-    /* buttons */
 
     .hero-actions {
         width: 100%;
@@ -769,12 +709,8 @@ header {
     .btn-secondary {
         width: 100%;
         min-height: 48px;
-        padding:
-            12px
-            18px;
+        padding: 12px 18px;
     }
-
-    /* trust */
 
     .hero-trust {
         width: 100%;
@@ -784,22 +720,14 @@ header {
         gap: 10px;
     }
 
-
     .hero-trust span {
         width: 100%;
         font-size: 0.76rem;
         white-space: normal;
     }
-
 }
 
-
-/* =========================================================
-   HP SANGAT KECIL
-   ========================================================= */
-
 @media screen and (max-width: 380px) {
-
     .hero {
         min-height: 650px;
         padding-left: 18px;
@@ -812,22 +740,18 @@ header {
                 #050505
             ),
             url('images/logoweb.png')
-            center 40px /
-            92vw auto
-            no-repeat;
+            center 40px / 92vw auto no-repeat;
     }
-
 
     .hero h1 {
         font-size: 2.55rem;
     }
 
-
     .hero-eyebrow {
         font-size: 0.58rem;
     }
-
 }
+
 /* =========================
    SECTIONS
    ========================= */
@@ -923,187 +847,94 @@ header {
 /* =========================
    PRODUCTS
    ========================= */
+<!-- BANNER KATALOG ATABAN -->
 
-#produk {
-    max-width: none;
-    padding-left: max(24px, calc((100vw - var(--container)) / 2 + 24px));
-    padding-right: max(24px, calc((100vw - var(--container)) / 2 + 24px));
-    background: linear-gradient(180deg, #050505 0%, #0a0a0a 48%, #050505 100%);
-}
+  .katalog-banner-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
 
-#produk > * {
-    max-width: var(--container);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#produk > h3 {
-    color: #f3f3ef !important;
-    font-family: var(--font-heading);
-    font-size: 1.45rem;
-    font-weight: 600;
-    letter-spacing: .2px;
-}
-
-.category-subtitle {
-    margin: 24px 0 22px;
-    color: #c9a83a;
-    font-family: var(--font-body);
-    font-size: .82rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 310px));
-    justify-content: center;
-    gap: 24px;
-}
-
-.product-card {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding-bottom: 20px;
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius);
-    background: #0f0f0f;
-    text-align: center;
-    box-shadow: none;
-    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
-}
-
-.product-card::before {
-    display: none;
-}
-
-.product-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(212,175,55,.28);
-    box-shadow: 0 18px 40px rgba(0,0,0,.32);
-}
-
-.img-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 310px;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: #0a0a0a;
-}
-
-.img-container::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 38px;
-    pointer-events: none;
-    background: linear-gradient(to top, #0f0f0f, transparent);
-}
-
-.product-card img {
+  .katalog-card-link {
+    text-decoration: none;
+    color: inherit;
     display: block;
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    object-fit: contain;
-    cursor: pointer;
-    transition: transform .35s ease;
-}
+  }
 
-.product-card:hover img {
-    transform: scale(1.025);
-}
-
-.product-card h3 {
+  .katalog-card-text {
     position: relative;
-    z-index: 2;
-    margin: 18px 16px 5px;
-    color: #eee9da;
-    font-family: var(--font-heading);
-    font-size: 1.07rem;
-    font-weight: 600;
-    letter-spacing: .15px;
-}
-
-.product-card p {
-    position: relative;
-    z-index: 2;
-    margin: 0 16px;
-    color: #9e9e98;
-    font-size: .86rem;
-    font-weight: 400;
-}
-
-.wishlist-icon {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    z-index: 10;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #181818 0%, #0d0d0d 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2); /* Frame garis emas tipis */
+    padding: 48px 40px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 50%;
-    background: rgba(5,5,5,.72);
-    color: rgba(255,255,255,.76);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
-}
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+  }
 
-.wishlist-icon:hover {
-    transform: none;
-    border-color: var(--border);
-    background: rgba(5,5,5,.9);
-    color: var(--gold);
-}
+  .katalog-card-text:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  }
 
-.wishlist-icon.active {
-    transform: none;
-    border-color: rgba(212,175,55,.45);
-    color: var(--gold);
-    filter: none;
-}
+  .katalog-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #d4af37;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
 
-.color-swatches {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 14px;
-    padding: 0 14px 3px;
-}
+  .katalog-title {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
 
-.swatch {
-    width: 22px;
-    height: 22px;
-    border: 1px solid rgba(255,255,255,.25);
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,.45);
-    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-}
+  .katalog-desc {
+    font-size: 0.95rem;
+    color: #a1a1a6;
+    line-height: 1.6;
+    max-width: 580px;
+    margin: 0 auto 28px;
+    font-weight: 300;
+  }
 
-.swatch:hover,
-.swatch.active {
-    transform: scale(1.12);
-    border-color: var(--gold);
-    box-shadow: 0 0 0 2px rgba(212,175,55,.10);
-}
+  .btn-lihat-katalog {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 6px;
+    transition: border-color 0.3s ease, color 0.3s ease, gap 0.3s ease;
+  }
 
+  .katalog-card-text:hover .btn-lihat-katalog {
+    border-color: #d4af37;
+    color: #d4af37;
+    gap: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .katalog-card-text {
+      padding: 36px 24px;
+    }
+    .katalog-title {
+      font-size: 1.5rem;
+    }
+  }
 /* =========================
    GALLERY
    ========================= */
@@ -1136,6 +967,59 @@ header {
 
 .gallery-item:hover .gallery-img {
     transform: scale(1.025);
+}
+
+/* =========================
+   GALERI SLIDER CUSTOM CSS
+   ========================= */
+
+.galeri-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.galeri-grid {
+    display: flex !important;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 5px;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+.galeri-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.galeri-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.galeri-grid .gallery-item {
+    flex: 0 0 calc(25% - 15px);
+    min-width: 220px;
+}
+
+.galeri-grid .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+@media (max-width: 980px) {
+    .galeri-grid .gallery-item {
+        flex: 0 0 calc(33.333% - 14px);
+    }
+}
+
+@media (max-width: 576px) {
+    .galeri-grid .gallery-item {
+        flex: 0 0 75%;
+    }
 }
 
 /* =========================
@@ -1256,7 +1140,7 @@ header {
 }
 
 /* =========================
-   ARTICLES (BLACK & GOLD THEME)
+   ARTICLES
    ========================= */
 
 #artikel.section {
@@ -1265,14 +1149,12 @@ header {
     padding: 92px 24px;
 }
 
-/* Grid Layout */
 .artikel-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
 }
 
-/* Kartu Artikel */
 .card {
     background: #0f0f0f;
     border-radius: var(--radius);
@@ -1290,12 +1172,11 @@ header {
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
 }
 
-/* Gambar Sampul Artikel */
 .card img {
     width: 100%;
-    height: 265px; /* Tinggi bisa disesuaikan */
-    object-fit: contain; /* Memastikan seluruh foto terlihat utuh tanpa terpotong */
-    background-color: #050505; /* Warna latar bingkai jika aspek rasio foto berbeda */
+    height: 265px;
+    object-fit: contain;
+    background-color: #050505;
     border-radius: calc(var(--radius) - 2px);
     display: block;
     transition: transform 0.35s ease, filter 0.35s ease;
@@ -1305,7 +1186,6 @@ header {
     transform: scale(1.02);
 }
 
-/* Konten Dalam Kartu */
 .card-content {
     padding: 18px 6px 6px;
     display: flex;
@@ -1314,13 +1194,12 @@ header {
 }
 
 .card-content h3 {
-    font-family: var(--font-heading);
+    font-family: 'Bodoni Moda',serif;
     font-size: 1.12rem;
     font-weight: 600;
     line-height: 1.4;
-    color: #f7f7f4;
+    color: #D4AF37;
     margin: 0 0 12px 0;
-    
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -1334,14 +1213,12 @@ header {
     color: var(--text-soft);
     margin: 0 0 20px 0;
     flex-grow: 1;
-    
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* Tombol Baca Selengkapnya */
 .btn-baca {
     display: inline-flex;
     align-items: center;
@@ -1365,6 +1242,89 @@ header {
     color: #050505;
     transform: translateY(-2px);
 }
+
+.artikel-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.artikel-grid {
+    display: flex !important;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 5px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.artikel-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.artikel-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.artikel-grid .card {
+    flex: 0 0 calc(33.333% - 16px);
+    min-width: 280px;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: rgba(15, 15, 15, 0.9);
+    color: var(--gold);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.slider-btn:hover {
+    background: var(--gold);
+    color: #050505;
+    border-color: var(--gold);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.prev-btn {
+    left: -22px;
+}
+
+.next-btn {
+    right: -22px;
+}
+
+@media (max-width: 980px) {
+    .artikel-grid .card {
+        flex: 0 0 calc(50% - 12px);
+    }
+}
+
+@media (max-width: 576px) {
+    .artikel-grid .card {
+        flex: 0 0 85%;
+    }
+    .prev-btn {
+        left: -10px;
+    }
+    .next-btn {
+        right: -10px;
+    }
+}
+
 /* =========================
    MODAL ACCOUNT
    ========================= */
@@ -1436,10 +1396,8 @@ header {
 }
 
 .modal-btn:hover {
-    transform: none;
     border-color: var(--gold-hover);
     background: var(--gold-hover);
-    box-shadow: none;
 }
 
 .close-modal {
@@ -1452,7 +1410,6 @@ header {
 }
 
 .close-modal:hover {
-    transform: none;
     color: var(--gold);
 }
 
@@ -1518,7 +1475,6 @@ footer {
 }
 
 .footer-col ul li a:hover {
-    padding-left: 0;
     color: var(--gold);
 }
 
@@ -1534,7 +1490,6 @@ footer {
     justify-content: center;
     width: 38px;
     height: 38px;
-    margin: 0;
     border: 1px solid var(--border-soft);
     border-radius: 50%;
     background: #0b0b0b;
@@ -1547,7 +1502,6 @@ footer {
     border-color: var(--gold);
     background: var(--gold);
     color: #050505;
-    box-shadow: none;
 }
 
 .copyright {
@@ -1573,16 +1527,6 @@ footer {
 
     .main-nav ul {
         gap: 20px;
-    }
-
-    .hero {
-        min-height: 620px;
-        height: auto;
-        padding: 76px 6% 64px;
-        background:
-            linear-gradient(90deg, rgba(5,5,5,.97), rgba(5,5,5,.70)),
-            linear-gradient(to bottom, transparent 72%, #050505 100%),
-            url('images/logoweb.png') right center / 58vw auto no-repeat;
     }
 
     .about-grid {
@@ -1679,10 +1623,6 @@ footer {
         font-size: .78rem;
     }
 
-    .main-nav a::after {
-        display: none;
-    }
-
     .dropdown-content {
         position: static;
         width: 100%;
@@ -1696,32 +1636,6 @@ footer {
     .dropdown:hover .dropdown-content,
     .dropdown:focus-within .dropdown-content {
         display: block;
-    }
-
-    .hero {
-        min-height: 600px;
-        padding: 72px 22px 54px;
-        justify-content: flex-end;
-        align-items: flex-start;
-        background:
-            linear-gradient(180deg, rgba(5,5,5,.52) 0%, rgba(5,5,5,.82) 48%, #050505 100%),
-            url('images/logoweb.png') center 15% / min(84vw, 520px) auto no-repeat;
-    }
-
-    .hero h1 {
-        max-width: 560px;
-        font-size: clamp(2.6rem, 11vw, 4rem);
-        letter-spacing: -.9px;
-    }
-
-    .hero h2 {
-        font-size: clamp(2.4rem, 10vw, 3.7rem);
-    }
-
-    .hero p {
-        max-width: 520px;
-        font-size: .92rem;
-        line-height: 1.75;
     }
 
     .section {
@@ -1806,22 +1720,6 @@ footer {
         display: none;
     }
 
-    .hero {
-        min-height: 560px;
-        padding: 62px 18px 48px;
-        background:
-            linear-gradient(180deg, rgba(5,5,5,.45) 0%, rgba(5,5,5,.84) 50%, #050505 100%),
-            url('images/logoweb.png') center 12% / 90vw auto no-repeat;
-    }
-
-    .hero h1 {
-        font-size: clamp(2.35rem, 12vw, 3.25rem);
-    }
-
-    .hero p {
-        font-size: .88rem;
-    }
-
     .section {
         padding: 62px 16px;
     }
@@ -1895,47 +1793,22 @@ footer {
     <!-- Input File Tersembunyi untuk Ganti Gambar -->
     <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
-    <!-- NAVIGASI UTILITAS -->
-    
     <!-- NAVIGASI UTAMA -->
     <header>
         <div class="logo">
             <img src="images/logopojok.png" alt="logo ataban " class="editable-image" title="Klik untuk ganti logo jika dalam mode edit">
         </div>
        
-        <!-- TAMBAHKAN TOMBOL HAMBURGER DI SINI -->
+        <!-- TOMBOL HAMBURGER -->
        <div class="hamburger-menu" id="hamburger-btn">
-           <i class="fas fa-bars"></i> <!-- Menggunakan ikon FontAwesome -->
+           <i class="fas fa-bars"></i>
        </div>
 
         <nav class="main-nav">
             <ul>
                 <li><a href="#beranda" class="editable-text">Beranda</a></li>
                 <li><a href="#tentang-kami" class="editable-text">Tentang Kami</a></li>
-                <li class="dropdown">
-                    <a href="#produk" class="editable-text">Produk <i class="fas fa-caret-down"></i></a>
-                    <div class="dropdown-content">
-                        <!-- ATASAN WANITA -->
-                        <div class="dropdown-category">
-                            <span class="dropdown-title">Atasan Wanita</span>
-                            <a href="#kategori-kemeja">Kemeja</a>
-                            <a href="#kategori-blazer">Blazer / Jas</a>
-                            <a href="#kategori-blouse">Blouse</a>
-                            <a href="#kategori-tunik">Tunik</a>
-                        </div>
-                        <!-- BAWAHAN WANITA -->
-                        <div class="dropdown-category">
-                            <span class="dropdown-title">Bawahan Wanita</span>
-                            <a href="#kategori-rok">Rok</a>
-                            <a href="#kategori-celana">Celana</a>
-                        </div>
-                        <!-- FASHION MUSLIM -->
-                        <div class="dropdown-category">
-                            <span class="dropdown-title">Fashion Muslim</span>
-                            <a href="#kategori-gamis">Gamis</a>
-                        </div>
-                    </div>
-                </li>
+                <li><a href="#produk" class="editable-text">Produk </a></li>
                 <li><a href="#galeri" class="editable-text">Galeri</a></li>
                 <li><a href="#artikel" class="editable-text">Artikel</a></li>
                 <li><a href="#kontak" class="editable-text">Kontak</a></li>
@@ -1944,47 +1817,46 @@ footer {
     </header>
 
     <!-- BERANDA / HERO -->
-<section id="beranda" class="hero editable-bg">
-    <div class="hero-content">
-        <div class="hero-eyebrow reveal">
-            OFFICE WEAR · MODEST FASHION · INDONESIA
-        </div>
-        <h1 class="editable-text reveal">
-            Modern Modesty
-            <span class="gold-word">for Everyone</span>
-        </h1>
-        <p class="editable-text reveal">
-            Menghadirkan office wear dan fashion muslim yang elegan,
-            nyaman, dan berkelas melalui material terpilih serta
-            pengalaman panjang di industri garmen.
-        </p>
-        <div class="hero-actions reveal">
-            <a href="#produk" class="btn-primary">
-                LIHAT KOLEKSI
-                <i class="fas fa-arrow-right"></i>
-            </a>
-            <a href="#tentang-kami" class="btn-secondary">
-                TENTANG ATABAN
-            </a>
-        </div>
+    <section id="beranda" class="hero editable-bg">
+        <div class="hero-content">
+            <div class="hero-eyebrow reveal">
+                OFFICE WEAR · MODEST FASHION · INDONESIA
+            </div>
+            <h1 class="editable-text reveal">
+                Modern Modesty
+                <span class="gold-word">for Everyone</span>
+            </h1>
+            <p class="editable-text reveal">
+                Menghadirkan office wear dan fashion muslim yang elegan,
+                nyaman, dan berkelas melalui material terpilih serta
+                pengalaman panjang di industri garmen.
+            </p>
+            <div class="hero-actions reveal">
+                <a href="#produk" class="btn-primary">
+                    LIHAT KOLEKSI
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#tentang-kami" class="btn-secondary">
+                    TENTANG ATABAN
+                </a>
+            </div>
 
-        <div class="hero-trust reveal">
-            <span>
-                <i class="fas fa-circle-check"></i>
-                17+ tahun pengalaman garmen
-            </span>
-            <span>
-                <i class="fas fa-shield-halved"></i>
-                Brand terdaftar DJKI
-            </span>
-            <span>
-                <i class="fas fa-gem"></i>
-                Kualitas & kenyamanan
-            </span>
+            <div class="hero-trust reveal">
+                <span>
+                    <i class="fas fa-circle-check"></i>
+                    17+ tahun pengalaman garmen
+                </span>
+                <span>
+                    <i class="fas fa-shield-halved"></i>
+                    Brand terdaftar DJKI
+                </span>
+                <span>
+                    <i class="fas fa-gem"></i>
+                    Kualitas & kenyamanan
+                </span>
+            </div>
         </div>
-    </div>
-
-</section>
+    </section>
 
     <!-- TENTANG KAMI -->
     <section id="tentang-kami" class="section">
@@ -1993,8 +1865,7 @@ footer {
             <div class="about-box reveal">
                 <i class="fas fa-building fa-3x" style="color: var(--gold); margin-bottom:20px;"></i>
                 <h3 class="editable-text" style="color: var(--gold);">Profil Perusahaan</h3>
-                <p class="editable-text">ATABAN Fashion merupakan brand office wear dan fashion muslim di bawah naungan CV. Berkah Ahda Sabila dengan pengalaman lebih dari 17 tahun di industri garmen. Berawal dari BAS Fashion pada tahun 2024, ATABAN kini hadir sebagai brand yang telah resmi terdaftar di DJKI.
-
+                <p class="editable-text">ATABAN Fashion merupakan brand office wear dan fashion muslim yang didukung oleh CV Berkah Ahda Sabila dengan pengalaman lebih dari 17 tahun di bidang konveksi dan industri garmen. ATABAN menghadirkan busana modern yang memadukan desain elegan, kenyamanan, dan kualitas, serta telah resmi terdaftar sebagai merek di Direktorat Jenderal Kekayaan Intelektual (DJKI).
 </p>
             </div>
             <div class="about-box reveal">
@@ -2005,12 +1876,7 @@ footer {
             <div class="about-box reveal">
                 <i class="fas fa-handshake fa-3x" style="color: var(--gold); margin-bottom:20px;"></i>
                 <h3 class="editable-text" style="color: var(--gold);">Misi</h3>
-                <p class="editable-text"> Menghasilkan produk fashion dengan kualitas terbaik,
-Mengutamakan kenyamanan dan kepuasan pelanggan, 
-Mengembangkan inovasi desain yang mengikuti perkembangan fashion, 
-Menjalankan bisnis secara profesional dengan mengedepankan integritas, 
-Membangun merek Indonesia yang memiliki daya saing tinggi. 
-</p>
+                <p class="editable-text">Menghasilkan produk fashion dengan kualitas terbaik, Mengutamakan kenyamanan dan kepuasan pelanggan, Mengembangkan inovasi desain yang mengikuti perkembangan fashion, Menjalankan bisnis secara profesional dengan mengedepankan integritas, Membangun merek Indonesia yang memiliki daya saing tinggi.</p>
             </div>
             <div class="about-box reveal">
                 <i class="fas fa-eye fa-3x" style="color: var(--gold); margin-bottom:20px;"></i>
@@ -2025,270 +1891,56 @@ Membangun merek Indonesia yang memiliki daya saing tinggi.
         </div>
     </section>
 
-    <!-- PRODUK -->
-    <section id="produk" class="section">
-        <h2 class="section-title editable-text reveal">Koleksi Produk</h2>
-        
-        <!-- ATASAN WANITA -->
-        <h3 class="editable-text reveal" style="color: white; margin-bottom: 10px; text-align:center;">Atasan Wanita</h3>
-        
-        <!-- Kemeja -->
-        <div id="kategori-kemeja" style="padding-top: 20px;">
-            <h4 class="category-subtitle reveal"> Kemeja</h4>
-            <div class="product-grid" style="margin-bottom: 40px;">
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/keira.png" alt="Kemeja" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Keira Shirt</h3>
-                    <p class="editable-text"></p>
-                </div>
+   <!-- BANNER / KARTU AKSES KATALOG UTAMA -->
+<section id="produk" class="section">
+    <h2 class="section-title editable-text reveal">Koleksi Produk</h2>
+   <div class="katalog-banner-container reveal">
+    <a href="collection/katalog.html" class="katalog-card-link">
+        <div class="katalog-card-text">
+            <span class="katalog-tag">Exclusive Collection</span>
+            <h3 class="katalog-title">Katalog Lengkap Koleksi ATABAN</h3>
+            <p class="katalog-desc">Eksplorasi pilihan busana, variasi warna, dan detail bahan berkualitas tinggi.</p>
+            <div class="katalog-action">
+                <span class="btn-lihat-katalog">Jelajahi Katalog <i class="fas fa-arrow-right"></i></span>
             </div>
         </div>
-
-        <!-- Blazer / Jas -->
-        <div id="kategori-blazer" style="padding-top: 20px;">
-            <h4 class="category-subtitle reveal">Blazer / Jas</h4>
-            <div class="product-grid" style="margin-bottom: 40px;">
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/" alt="cooming soon" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Cooming Soon</h3>
-                    <p class="editable-text"></p>
-                </div>
-            </div>
-        </div>
-
-        <!--Blouse (Baru) -->
-        <div id="kategori-blouse" style="padding-top: 20px;">
-            <h4 class="category-subtitle reveal">Blouse</h4>
-            <div class="product-grid" style="margin-bottom: 40px;">
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/niki.png" alt="Blouse Niki" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Blouse Niki</h3>
-                    <p class="editable-text"></p>
-                </div>
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/vania.png" alt="Blouse Vania" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Blouse Vania</h3>
-                    <p class="editable-text"></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tunik (Ahda, Atmim 1, Sabila) -->
-        <div id="kategori-tunik" style="padding-top: 20px;">
-            <h4 class="category-subtitle reveal">Tunik</h4>
-            <div class="product-grid" style="margin-bottom: 60px;">
-                <!-- Tunik Ahda -->
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img id="img-ahda" src="images/ahdamaroon.png" alt="Tunik Ahda" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Tunik Ahda</h3>
-                    <p class="editable-text"></p>
-                    <div class="color-swatches">
-                        <div class="swatch active" style="background-color: #8b2f51;" title="Maroon" onclick="changeImage('img-ahda', 'images/ahdamaroon.png', this)"></div> 
-                        <div class="swatch" style="background-color: #d4b064;" title="Khaki" onclick="changeImage('img-ahda', 'images/ahdakhaki.png', this)"></div> 
-                        <div class="swatch" style="background-color: #ddc6b1;" title="Coksu" onclick="changeImage('img-ahda', 'images/ahdacoksu.png', this)"></div> 
-                        <div class="swatch" style="background-color: #ffffff;" title="Putih" onclick="changeImage('img-ahda', 'images/ahdaputih.png', this)"></div> 
-                        <div class="swatch" style="background-color: #ddd181;" title="Olive" onclick="changeImage('img-ahda', 'images/ahdaolive.png', this)"></div> 
-                        <div class="swatch" style="background-color: #b9d6bf;" title="Sage" onclick="changeImage('img-ahda', 'images/ahdasage.png', this)"></div> 
-                        <div class="swatch" style="background-color: #d4ebd9;" title="Mint" onclick="changeImage('img-ahda', 'images/ahdamint.png', this)"></div> 
-                        <div class="swatch" style="background-color: #a294b6;" title="Ungu" onclick="changeImage('img-ahda', 'images/ahdaungu.png', this)"></div> 
-                        <div class="swatch" style="background-color: #c4aca2;" title="Cokelat" onclick="changeImage('img-ahda', 'images/ahdacoklat.png', this)"></div> 
-                    </div>
-                </div>
-
-                <!-- Tunik Atmim Series 1-->
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img id="img-atmim" src="images/atmimniagara.png" alt="Tunik Atmim" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Tunik Atmim series 1</h3>
-                    <p class="editable-text"></p>
-                    <div class="color-swatches">
-                        <div class="swatch active" style="background-color: #6a91d3;" title="Niagara" onclick="changeImage('img-atmim', 'images/atmimniagara.png', this)"></div>
-                        <div class="swatch" style="background-color: #a56e6e;" title="Brown Milo" onclick="changeImage('img-atmim', 'images/atmimbrownmilo.png', this)"></div>
-                        <div class="swatch active" style="background-color: #1d3874;" title="Navy" onclick="changeImage('img-atmim', 'images/atmimnavy.png', this)"></div>
-                        <div class="swatch" style="background-color: #cf967b;" title="Coffe Milk" onclick="changeImage('img-atmim', 'images/atmimcofeemilk.png', this)"></div>
-                        <div class="swatch active" style="background-color: #b950b9;" title="Lavender" onclick="changeImage('img-atmim', 'images/atmmimlavender.png', this)"></div>
-                        <div class="swatch" style="background-color: #6bb18a;" title="Hijau Tosca" onclick="changeImage('img-atmim', 'images/atmimhijautosca.png', this)"></div>
-                        <div class="swatch active" style="background-color: #8a0137;" title="Maroon" onclick="changeImage('img-atmim', 'images/atmimmaroon.png', this)"></div>
-                        <div class="swatch" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-atmim', 'images/atmimhitam.png', this)"></div>
-                        <div class="swatch active" style="background-color: #484b2d;" title="Olive" onclick="changeImage('img-atmim', 'images/atmimolive.png', this)"></div>
-                        <div class="swatch" style="background-color: #f2aecb;" title="Pink" onclick="changeImage('img-atmim', 'images/atmimdusty.png', this)"></div>
-                        <div class="swatch active" style="background-color: #ffffff;" title="Putih Tulang" onclick="changeImage('img-atmim', 'images/atmimputihbw.png', this)"></div>
-                        <div class="swatch" style="background-color: #dfbd3a;" title="Mustard" onclick="changeImage('img-atmim', 'images/atmimmustard.png', this)"></div>
-                        <div class="swatch active" style="background-color: #afa472;" title="Army" onclick="changeImage('img-atmim', 'images/atmimarmy.png', this)"></div>
-                        <div class="swatch" style="background-color: #d2691e;" title="Merah Bata 1" onclick="changeImage('img-atmim', 'images/atmimmerahbata1.png', this)"></div>
-                    </div>
-                </div>
-
-                 <!-- Tunik Atmim Series 2 -->
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img id="img-atmim-2" src="images/atmimnude.png" alt="Tunik Atmim" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Tunik Atmim series 2</h3>
-                    <p class="editable-text"></p>
-                    <div class="color-swatches">
-                        <div class="swatch active" style="background-color: #F4D1D8;" title="Peach" onclick="changeImage('img-atmim-2, 'images/atmimnude.png', this)"></div>
-                        <div class="swatch" style="background-color: #4ebd85;" title="Sage" onclick="changeImage('img-atmim-2', 'images/atmimsage.png', this)"></div>
-                        <div class="swatch active" style="background-color: #bbbfc2;" title="Abu Muda" onclick="changeImage('img-atmim-2', 'images/atmimabumuda.png', this)"></div>
-                        <div class="swatch" style="background-color: #646662;" title="Abu Tua" onclick="changeImage('img-atmim-2', 'images/atmimabutua.png', this)"></div>
-                        <div class="swatch active" style="background-color: #1B4D8a;" title="Biru Denim 1" onclick="changeImage('img-atmim-2', 'images/atmimdenim1.png', this)"></div>
-                        <div class="swatch" style="background-color: #1B4D8E;" title="Biru Denim 2" onclick="changeImage('img-atmim-2', 'images/atmimdenim2.png', this)"></div>
-                        <div class="swatch active" style="background-color: #1B4D3E;" title="Hijau Botol" onclick="changeImage('img-atmim-2', 'images/atmimhijaubotol.png', this)"></div>
-                        <div class="swatch" style="background-color: #D8A49D;" title="Salem" onclick="changeImage('img-atmim-2', 'images/atmimsalem.png', this)"></div>
-                        <div class="swatch active" style="background-color: #8A1C14;" title="Merah Cabe" onclick="changeImage('img-atmim-2', 'images/atmimmerahcabe.png', this)"></div>
-                        <div class="swatch" style="background-color: #B84A39;" title="Merah Bata 2" onclick="changeImage('img-atmim-2', 'images/atmimmerahbata2.png', this)"></div>
-                    </div>
-                </div>
-
-                <!-- Tunik Sabila -->
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img id="img-sabila" src="images/sabilacoksu.png" alt="Tunik Sabila" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Tunik Sabila</h3>
-                    <p class="editable-text"></p>
-                    <div class="color-swatches">
-                        <div class="swatch active" style="background-color: #e6c4bc;" title="Coksu" onclick="changeImage('img-sabila', 'images/sabilacoksu.png', this)"></div>
-                        <div class="swatch" style="background-color: #900000;" title="Maroon" onclick="changeImage('img-sabila', 'images/sabilamaroon.png', this)"></div>
-                        <div class="swatch active" style="background-color: #dfa4ad;" title="Dusty Pink" onclick="changeImage('img-sabila', 'images/sabiladusty.png', this)"></div>
-                        <div class="swatch" style="background-color: #1d3874;" title="Navy" onclick="changeImage('img-sabila', 'images/sabilanavy.png', this)"></div>
-                        <div class="swatch active" style="background-color: #a37a77;" title="Milo" onclick="changeImage('img-sabila', 'images/sabilamilo.png', this)"></div>
-                        <div class="swatch" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-sabila', 'images/sabilahitam.png', this)"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. BAWAHAN WANITA -->
-        <h3 class="editable-text reveal" style="color: white; margin-bottom: 10px; margin-top: 50px; text-align:center;">Bawahan Wanita</h3>
-        
-        <!-- Rok -->
-        <div id="kategori-rok" style="padding-top: 20px;">
-            <h4 class="category-subtitle reveal">Rok</h4>
-            <div class="product-grid" style="margin-bottom: 40px;">
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/nara.png" alt="Rok nara" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Nara Skirt</h3>
-                    <p class="editable-text"></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Celana -->
-        <div id="kategori-celana" style="padding-top: 20px;">
-            <h4 class="category-subtitle reveal">Celana</h4>
-            <div class="product-grid" style="margin-bottom: 50px;">
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/nala.png" alt="Celana nala" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Nala Pants</h3>
-                    <p class="editable-text"></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. FASHION MUSLIM (Baru) -->
-        <h3 class="editable-text reveal" style="color: white; margin-bottom: 10px; margin-top: 50px; text-align:center;">Fashion Muslim</h3>
-        <div id="kategori-blouse" style="padding-top: 20px;">
-            <h4 class="category-subtitle reveal">Gamis</h4>
-            <div class="product-grid" style="margin-bottom: 40px;">
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/olivia.png" alt="olivia" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Olivia Dress</h3>
-                    <p class="editable-text"></p>
-                </div>
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/davia.png" alt="davia" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Davia Dress</h3>
-                    <p class="editable-text"></p>
-                </div>
-            </div>
-            <div class="product-grid" style="margin-bottom: 40px;">
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/elvara.png" alt="elvara" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Elvara Dress</h3>
-                    <p class="editable-text"></p>
-                </div>
-                <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/zeline.png" alt="Zeline" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Zeline Dress</h3>
-                    <p class="editable-text"></p>
-                </div>
-                  <div class="product-card reveal item-produk">
-                    <div class="img-container">
-                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/" alt="Ariana" class="editable-image">
-                    </div>
-                    <h3 class="editable-text nama-produk">Ariana Dress</h3>
-                    <p class="editable-text"></p>
-                </div>
-            </div>
-        </div>
-
-    </section>
+    </a>
+</div>
+</section>
 
     <!-- GALERI -->
-<section id="galeri" class="section">
-    <h2 class="section-title editable-text reveal">Galeri</h2>
+    <section id="galeri" class="section">
+        <h2 class="section-title editable-text reveal">Galeri</h2>
 
-    <!-- Grid Gambar Galeri -->
-    <div class="product-grid">
-        <div class="gallery-item reveal">
-            <img src="images/galeri2.png" alt="Galeri" class="editable-image gallery-img">
-        </div>
-        <div class="gallery-item reveal">
-            <img src="images/galeri3.png" alt="Galeri" class="editable-image gallery-img">
-        </div>
-        <div class="gallery-item reveal">
-            <img src="images/galeri4.png" alt="Galeri" class="editable-image gallery-img">
-        </div>
-        <div class="gallery-item reveal">
-            <img src="images/galeri5.png" alt="Galeri" class="editable-image gallery-img">
-        </div>
-    </div> <!-- Penutup product-grid -->
+        <!-- Wrapper Slider Galeri -->
+        <div class="galeri-slider-wrapper">
+            <button class="slider-btn prev-btn" id="galeriPrevBtn" aria-label="Sebelumnya">
+                <i class="fas fa-chevron-left"></i>
+            </button>
 
-   <!-- ========================================== -->
-    <!-- CUSTOM VIDEO PLAYER (Dengan Tombol Keren)  -->
-    <!-- ========================================== -->
+            <div class="product-grid galeri-grid" id="galeriSlider">
+                <div class="gallery-item reveal">
+                    <img src="images/galeri2.png" alt="Galeri" class="editable-image gallery-img">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="images/galeri3.png" alt="Galeri" class="editable-image gallery-img">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="images/galeri4.png" alt="Galeri" class="editable-image gallery-img">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="images/galeri5.png" alt="Galeri" class="editable-image gallery-img">
+                </div>
+            </div>
+
+            <button class="slider-btn next-btn" id="galeriNextBtn" aria-label="Berikutnya">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- CUSTOM VIDEO PLAYER -->
     <div class="custom-video-wrapper reveal">
-        <h3 class="video-title" style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
-        
         <div class="video-card" id="videoContainer">
             <video id="myVideo" preload="metadata" playsinline>
                 <source src="assets/video1.mp4" type="video/mp4">
@@ -2301,31 +1953,26 @@ Membangun merek Indonesia yang memiliki daya saing tinggi.
 
             <!-- Baris Kontrol Bawah -->
             <div class="controls-bar">
-                <!-- Progress Bar Merah -->
                 <div class="progress-container" id="progressContainer">
                     <div class="progress-bar" id="progressBar"></div>
                 </div>
 
                 <div class="controls-row">
                     <div class="left-controls">
-                        <!-- Play/Pause -->
                         <button class="icon-btn" id="playBtn">
                             <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                             <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                         </button>
-                        <!-- Durasi Waktu -->
                         <span class="time-display">
                             <span id="currentTime">00:00</span> / <span id="durationTime">00:00</span>
                         </span>
                     </div>
 
                     <div class="right-controls">
-                        <!-- Mute/Unmute -->
                         <button class="icon-btn" id="muteBtn">
                             <svg id="volumeIcon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
                             <svg id="muteIcon" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
                         </button>
-                        <!-- Fullscreen -->
                         <button class="icon-btn" id="fullScreenBtn">
                             <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
                         </button>
@@ -2333,40 +1980,48 @@ Membangun merek Indonesia yang memiliki daya saing tinggi.
                 </div>
             </div>
         </div>
-    </div> <!-- Penutup main-wrapper -->
+    </div>
 
     <!-- ARTIKEL -->
-    <section id="artikel" class="section">
-    <h2 class="section-title">Artikel</h2>
-    <div class="artikel-grid">
-        <div class="card">
-            <img src="sampulartikel/sampulkeira.png" alt="Kemeja Putih Katun Dobby Ataban">
-            <div class="card-content">
-                <h3>Rahasia Tampil Professional & Classy Tanpa Membosankan: Kemeja Putih Katun Dobby Ataban</h3>
-                <p>Siapa bilang kemeja putih polos untuk kerja selalu terkesan "biasa saja" atau kaku?</p>
-                <a href="artikel/artikel1.html" class="btn-baca">Baca Selengkapnya</a>
+    <section id="artikel" class="section reveal">
+        <h2 class="section-title">Artikel & Inspirasi</h2>
+        <div class="artikel-slider-wrapper">
+            <button class="slider-btn prev-btn" id="artikelPrevBtn" aria-label="Sebelumnya">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="artikel-grid" id="artikelSlider">
+                <div class="card">
+                    <img src="sampulartikel/sampulkeira.png" alt="Panduan Memilih Pakaian Kerja Wanita">
+                    <div class="card-content">
+                        <h3>Rahasia Tampil Professional & Classy Tanpa Membosankan</h3>
+                        <p>Siapa bilang kemeja putih polos untuk kerja selalu terkesan "biasa saja" atau kaku? Bagi wanita karir modern, kemeja putih adalah amunisi utama di lemari pakaian.</p>
+                        <a href="artikel/artikel1.html" class="btn-baca" target="_blank" rel="noopener">Baca Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="sampulartikel/sampulearthdanpastel.png" alt="Tren Warna Fashion Muslim">
+                    <div class="card-content">
+                        <h3>Earth Tone atau Pastel? Mana yang Lebih Cocok untuk Gaya Berpakaianmu?</h3>
+                        <p>Saat memilih tunik, banyak orang lebih dulu jatuh hati pada modelnya. Padahal, warna juga memiliki peran besar dalam membentuk keseluruhan penampilan. </p>
+                        <a href="artikel/artikel2.html" class="btn-baca" target="_blank" rel="noopener">Baca Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="sampulartikel/sampulvanianiki.png" alt="Tips Merawat Bahan Katun Toyobo">
+                    <div class="card-content">
+                        <h3>Vania & Niki: Serupa dalam Gaya, Berbeda dalam Karakter</h3>
+                        <p>Mengapa Satu Model Bisa Memiliki Dua Karakter? Dalam dunia fashion, detail sering kali menjadi pembeda.</p>
+                        <a href="artikel/artikel3.html" class="btn-baca" target="_blank" rel="noopener">Baca Selengkapnya</a>
+                    </div>
+                </div>
             </div>
+            <button class="slider-btn next-btn" id="artikelNextBtn" aria-label="Berikutnya">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
-        <div class="card">
-            <img src="sampulartikel/sampulearthdanpastel.png" alt="Warna tunik pilihan">
-            <div class="card-content">
-                <h3>Earth Tone atau Pastel? Mana yang Lebih Cocok untuk Gaya Berpakaianmu?</h3>
-                <p>Saat memilih tunik, banyak orang lebih dulu jatuh hati pada modelnya.Padahal, warna juga memiliki peran besar dalam membentuk keseluruhan penampilan.</p>
-                <a href="artikel/artikel2.html" class="btn-baca">Baca Selengkapnya</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="sampulartikel/sampulvanianiki.png" alt="Warna tunik pilihan">
-            <div class="card-content">
-                <h3>Vania & Niki: Serupa dalam Gaya, Berbeda dalam Karakter</h3>
-                <p>Mengapa Satu Model Bisa Memiliki Dua Karakter? Dalam dunia fashion, detail sering kali menjadi pembeda.</p>
-                <a href="artikel/artikel3.html" class="btn-baca">Baca Selengkapnya</a>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-     <!-- KONTAK -->
+    <!-- KONTAK -->
     <section id="kontak" class="section">
         <h2 class="section-title editable-text reveal">Kontak</h2>
     </section>
@@ -2402,12 +2057,12 @@ Membangun merek Indonesia yang memiliki daya saing tinggi.
             <div class="footer-col reveal">
                 <h4 class="editable-text">Email</h4>
                 <p class="editable-text">atabanfashion@gmail.com</p>
-                <a href="atabanfashion@gmail.com" target="_blank" style="color: var(--gold); display:block; margin-top:10px;"><i class="fas fa-email-marker-alt"></i>
             </div>
-         <div class="copyright">
-             <p>&copy;2026 ATABAN Fashion by CV Berkah Ahda Sabila. All Rights Reserved.</p> 
         </div>
-     </footer>
+        <div class="copyright">
+            <p>&copy;2026 ATABAN Fashion by CV Berkah Ahda Sabila. All Rights Reserved.</p> 
+        </div>
+    </footer>
 
     <!-- MODAL AKUN SAYA -->
     <div id="modalAkun" class="modal">
@@ -2423,71 +2078,106 @@ Membangun merek Indonesia yang memiliki daya saing tinggi.
 
     <!-- JAVASCRIPT -->
     <script>
-        // =========================================
-// JAVASCRIPT KHUSUS CUSTOM VIDEO PLAYER 
-// =========================================
-const video = document.getElementById('myVideo');
-const videoContainer = document.getElementById('videoContainer');
-const playBtn = document.getElementById('playBtn');
-const muteBtn = document.getElementById('muteBtn');
-const fullScreenBtn = document.getElementById('fullScreenBtn');
-const progressBar = document.getElementById('progressBar');
-const progressContainer = document.getElementById('progressContainer');
+        const video = document.getElementById('myVideo');
+        const videoContainer = document.getElementById('videoContainer');
+        const playBtn = document.getElementById('playBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        const fullScreenBtn = document.getElementById('fullScreenBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
 
-// 1. Fitur Play & Pause
-function togglePlay() {
-  if (video.paused) {
-    video.play();
-    videoContainer.classList.add('playing');
-    document.getElementById('playIcon').style.display = 'none';
-    document.getElementById('pauseIcon').style.display = 'block';
-  } else {
-    video.pause();
-    videoContainer.classList.remove('playing');
-    document.getElementById('playIcon').style.display = 'block';
-    document.getElementById('pauseIcon').style.display = 'none';
-  }
-}
-video.addEventListener('click', togglePlay);
-playBtn.addEventListener('click', togglePlay);
+        // Slider Artikel
+        document.addEventListener('DOMContentLoaded', function() {
+            const artikelSlider = document.getElementById('artikelSlider');
+            const prevBtn = document.getElementById('artikelPrevBtn');
+            const nextBtn = document.getElementById('artikelNextBtn');
 
-// 2. Fitur Mute & Unmute
-muteBtn.addEventListener('click', () => {
-  video.muted = !video.muted;
-  document.getElementById('volumeIcon').style.display = video.muted ? 'none' : 'block';
-  document.getElementById('muteIcon').style.display = video.muted ? 'block' : 'none';
-});
+            if (artikelSlider && prevBtn && nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    const cardWidth = artikelSlider.querySelector('.card').offsetWidth + 24;
+                    artikelSlider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                });
 
-// 3. Update Waktu & Garis Merah (Progress Bar)
-function formatTime(seconds) {
-  let min = Math.floor(seconds / 60);
-  let sec = Math.floor(seconds % 60);
-  return (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
-}
-video.addEventListener('timeupdate', () => {
-  if (video.duration) {
-    progressBar.style.width = (video.currentTime / video.duration) * 100 + "%";
-    document.getElementById('currentTime').textContent = formatTime(video.currentTime);
-    document.getElementById('durationTime').textContent = formatTime(video.duration);
-  }
-});
+                prevBtn.addEventListener('click', function() {
+                    const cardWidth = artikelSlider.querySelector('.card').offsetWidth + 24;
+                    artikelSlider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                });
+            }
+        });
 
-// 4. Klik Progress Bar untuk melompat ke menit tertentu
-progressContainer.addEventListener('click', (e) => {
-  const width = progressContainer.clientWidth;
-  const clickX = e.offsetX;
-  video.currentTime = (clickX / width) * video.duration;
-});
+        // Slider Galeri
+        document.addEventListener('DOMContentLoaded', function() {
+            const galeriSlider = document.getElementById('galeriSlider');
+            const galeriPrevBtn = document.getElementById('galeriPrevBtn');
+            const galeriNextBtn = document.getElementById('galeriNextBtn');
 
-// 5. Fitur Fullscreen
-fullScreenBtn.addEventListener('click', () => {
-  if (!document.fullscreenElement) {
-    videoContainer.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
-});
-        // 0. Fungsionalitas Tombol Hamburger (Mobile Menu)
+            if (galeriSlider && galeriPrevBtn && galeriNextBtn) {
+                galeriNextBtn.addEventListener('click', function() {
+                    const itemWidth = galeriSlider.querySelector('.gallery-item').offsetWidth + 20;
+                    galeriSlider.scrollBy({ left: itemWidth, behavior: 'smooth' });
+                });
+
+                galeriPrevBtn.addEventListener('click', function() {
+                    const itemWidth = galeriSlider.querySelector('.gallery-item').offsetWidth + 20;
+                    galeriSlider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+                });
+            }
+        });
+
+        // Custom Video Player
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                videoContainer.classList.add('playing');
+                document.getElementById('playIcon').style.display = 'none';
+                document.getElementById('pauseIcon').style.display = 'block';
+            } else {
+                video.pause();
+                videoContainer.classList.remove('playing');
+                document.getElementById('playIcon').style.display = 'block';
+                document.getElementById('pauseIcon').style.display = 'none';
+            }
+        }
+        if (video) {
+            video.addEventListener('click', togglePlay);
+            playBtn.addEventListener('click', togglePlay);
+
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                document.getElementById('volumeIcon').style.display = video.muted ? 'none' : 'block';
+                document.getElementById('muteIcon').style.display = video.muted ? 'block' : 'none';
+            });
+
+            function formatTime(seconds) {
+                let min = Math.floor(seconds / 60);
+                let sec = Math.floor(seconds % 60);
+                return (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+            }
+
+            video.addEventListener('timeupdate', () => {
+                if (video.duration) {
+                    progressBar.style.width = (video.currentTime / video.duration) * 100 + "%";
+                    document.getElementById('currentTime').textContent = formatTime(video.currentTime);
+                    document.getElementById('durationTime').textContent = formatTime(video.duration);
+                }
+            });
+
+            progressContainer.addEventListener('click', (e) => {
+                const width = progressContainer.clientWidth;
+                const clickX = e.offsetX;
+                video.currentTime = (clickX / width) * video.duration;
+            });
+
+            fullScreenBtn.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    videoContainer.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+        }
+
+        // Mobile Menu
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mainNav = document.querySelector('.main-nav');
 
@@ -2495,14 +2185,15 @@ fullScreenBtn.addEventListener('click', () => {
             mainNav.classList.toggle('active');
         });
 
-        // Pengecekan Link Rahasia untuk Memunculkan Tombol Edit
+        // Admin Edit Button Check
         window.addEventListener('DOMContentLoaded', (event) => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('adminXkalong') === 'true') {
                 document.getElementById('editBtn').style.display = 'block';
             }
         });
-        // 1. ANIMASI SCROLL
+
+        // Scroll Animation
         function revealOnScroll() {
             var reveals = document.querySelectorAll('.reveal');
             for(var i = 0; i < reveals.length; i++){
@@ -2517,26 +2208,7 @@ fullScreenBtn.addEventListener('click', () => {
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
 
-        // 2. FUNGSI PENCARIAN
-        document.getElementById('searchInput').addEventListener('keyup', function(e) {
-            let filterText = e.target.value.toLowerCase();
-            let produkItems = document.querySelectorAll('.item-produk');
-            
-            produkItems.forEach(function(item) {
-                let judulProduk = item.querySelector('.nama-produk').innerText.toLowerCase();
-                if(judulProduk.indexOf(filterText) > -1) {
-                    item.style.display = "";
-                } else {
-                    item.style.display = "none";
-                }
-            });
-            
-            if(filterText.length > 0) {
-                document.getElementById('produk').scrollIntoView({behavior: "smooth"});
-            }
-        });
-
-        // 3. FUNGSI WISHLIST
+        // Wishlist Toggle
         let totalWishlist = 0;
         function toggleWishlist(element) {
             element.classList.toggle('active');
@@ -2547,16 +2219,14 @@ fullScreenBtn.addEventListener('click', () => {
             } else {
                 totalWishlist--;
             }
-            document.getElementById('wishlistCount').innerText = totalWishlist;
+            const wishlistCountEl = document.getElementById('wishlistCount');
+            if(wishlistCountEl) wishlistCountEl.innerText = totalWishlist;
         }
 
-        // 4. FUNGSI MODAL AKUN SAYA
+        // Modal Akun
         const modal = document.getElementById('modalAkun');
-        document.getElementById('btnAkun').addEventListener('click', function() {
-            modal.style.display = "flex";
-        });
         function closeModal() {
-            modal.style.display = "none";
+            if(modal) modal.style.display = "none";
         }
         window.onclick = function(event) {
             if (event.target == modal) {
@@ -2564,9 +2234,10 @@ fullScreenBtn.addEventListener('click', () => {
             }
         }
 
-        // 5. FUNGSI GANTI GAMBAR WARNA (SWATCH) UNTUK TUNIK
+        // Swatch Change Image
         function changeImage(imageId, newSrc, swatchElement) {
-            document.getElementById(imageId).src = newSrc;
+            const targetImg = document.getElementById(imageId);
+            if (targetImg) targetImg.src = newSrc;
             let swatches = swatchElement.parentElement.getElementsByClassName('swatch');
             for (let i = 0; i < swatches.length; i++) {
                 swatches[i].classList.remove('active');
@@ -2574,21 +2245,18 @@ fullScreenBtn.addEventListener('click', () => {
             swatchElement.classList.add('active');
         }
 
-        // 6. FITUR EDIT TANPA CODING (CMS Frontend)
+        // Edit Mode (CMS)
         let isEditMode = false;
         let currentImageElement = null;
 
         function toggleEditMode() {
-             // Jika mode edit sedang OFF dan ingin di-aktifkan, minta password terlebih dahulu
             if (!isEditMode) {
                 let password = prompt("Masukkan Password Admin:");
-                
-                // Ganti teks "ataban2026" di bawah ini dengan password pilihan rahasia Anda
                 if (password !== "Xkalong4_2") {
-                    if (password !== null) { // Jika user menekan OK tapi password salah
+                    if (password !== null) {
                         alert("Password salah! Akses ditolak.");
                     }
-                    return; // Batalkan proses pengaktifan edit mode
+                    return;
                 }
             }
                  
