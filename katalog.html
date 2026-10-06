@@ -1,528 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-     <link rel="icon" type="image/png" href="fotokatalog/favicon.png">
+    <link rel="icon" type="image/png" href="fotokatalog/favicon.png">
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="imagesartikel/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog Koleksi Pakaian</title>
+    <link rel="icon" type="image/png" href="fotokatalog/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     
     <style>
-      /* ===== 1. CSS VARIABLES & SYSTEM ===== */
-  /* ===== 1. CSS VARIABLES & SYSTEM ===== */
+/* ===== 1. CSS VARIABLES & SYSTEM ===== */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap');
 
-
-:root {
-    --bg-main: #faf9f6;          /* Cream Soft Warm */
-    --bg-card: #ffffff;
-    --text-primary: #121212;     /* Dark Charcoal */
-    --text-muted: #666666;
-    --accent-color: #111111;
-    --border-color: #eee9e0;
-    --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
-    --shadow-lg: 0 12px 30px rgba(0,0,0,0.08);
-    --radius-card: 12px;
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
-    --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: var(--font-body);
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20px;
-}
-
-/* LOGO */
-/* Import Poppins 700 */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
-.site-logo {
-  position: absolute; /* Bebas digeser tanpa merusak/mendorong elemen lain */
-  top: 25px;          /* Atur posisi atas-bawah */
-  left: 50px;          /* Geser ke kanan (sesuaikan % atau px sampai sejajar lurus KATALOG) */
-  z-index: 150;
-}
-
-.logo-text {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 60px; /* Dikecilkan sedikit dari 36px agar pas dalam garis header */
-  color: #ffc400; /* Warna kuning emas sesuai gambar */
-  letter-spacing: -1px;
-  line-height: 1; /* Mencegah teks melompat ke atas/bawah */
-}
-
-/* Potongan miring murni CSS pada huruf t dan b */
-.logo-text .cut {
-  display: inline-block;
-  /* Memotong Ujung Atas Huruf Secara Miring */
-  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
-}
-
-
-/* Header Title */
-.main-title {
-    font-family: var(--font-heading);
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    color: var(--text-primary);
-}
-
-/* ===== 2. NAVIGASI DROPDOWN (GLASSMORPHISM) ===== */
-.catalog-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(250, 249, 246, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 35px;
-}
-
-.nav-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.nav-group {
-    position: relative;
-    padding: 16px 0;
-}
-
-.nav-group-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text-primary);
-    text-decoration: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: var(--transition-smooth);
-}
-
-.nav-group-title i {
-    font-size: 0.65rem;
-    transition: transform 0.3s ease;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(12px);
-    background: #ffffff;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    box-shadow: var(--shadow-lg);
-    padding: 10px 6px;
-    min-width: 180px;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition-smooth);
-    display: flex;
-    flex-direction: column;
-}
-
-.nav-group:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-.nav-group:hover .nav-group-title i {
-    transform: rotate(180deg);
-}
-
-.dropdown-item {
-    padding: 10px 18px;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 500;
-    border-radius: 6px;
-    transition: var(--transition-smooth);
-    white-space: nowrap;
-}
-
-.dropdown-item:hover {
-    color: var(--text-primary);
-    background-color: #f5f3ef;
-    padding-left: 22px;
-}
-
-/* ===== 3. SECTION TITLES ===== */
-.main-category-title {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 20px 0 20px 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-align: center;
-}
-
-.sub-category {
-    margin-bottom: 45px;
-    scroll-margin-top: 80px;
-}
-
-.category-subtitle {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.category-subtitle::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background-color: var(--border-color);
-}
-
-/* ===== 4. KARTU PRODUK (MINIMALIS & ELEGAN) ===== */
-
-/* LOCK POSISI TOMBOL SLIDER */
-.slider-wrapper {
-    position: relative !important;
-    width: 100% !important;
-    margin-bottom: 25px;
-}
-
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: #11110f !important;
-    color: #d3ad63 !important;
-    border: 1px solid #d3ad63 !important;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 99 !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    transition: var(--transition-smooth);
-}
-
-.slider-btn:hover {
-    background-color: #d3ad63 !important;
-    color: #11110f !important;
-}
-
-.slider-btn-prev { left: -18px; }
-.slider-btn-next { right: -18px; }
-
-@media (max-width: 700px) {
-    .slider-btn { display: none !important; } /* Mobile geser layar langsung */
-}
-
-/* HORIZONTAL SLIDE UNTUK PRODUCT GRID */
-.product-grid {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    scroll-behavior: smooth !important;
-    scroll-snap-type: x mandatory !important;
-    gap: 20px !important;
-    padding: 10px 0 20px 0 !important;
-    width: 100%;
-}
-
-/* Sembunyikan Scrollbar */
-.product-grid::-webkit-scrollbar {
-    display: none;
-}
-.product-grid {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-/* Ukuran Item (Maksimal 4 Kartu di Desktop) */
-.product-card {
-    flex: 0 0 calc((100% - (20px * 3)) / 4) !important;
-    scroll-snap-align: start !important;
-    box-sizing: border-box;
-}
-
-/* Penyesuaian Responsif Layar */
-/* Tablet (Max 1024px) */
-@media (max-width: 1024px) {
-    .product-card {
-        flex: 0 0 calc((100% - (18px * 2)) / 3) !important; /* 3 Kartu Slider */
-    }
-}
-
-/* Mobile (Max 700px) */
-@media (max-width: 700px) {
-    .product-card {
-        flex: 0 0 calc((100% - 10px) / 2) !important; /* 2 Kartu Slider */
-    }
-}
-
-/* Styling Tombol Panah Navigasi Auto-Inject */
-.sub-category {
-    position: relative;
-}
-
-.custom-nav-btn {
-    position: absolute;
-    top: 55%;
-    transform: translateY(-50%);
-    width: 38px;
-    height: 38px;
-    background: rgba(0, 0, 0, 0.75);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.custom-nav-btn:hover {
-    background: #d4b064; /* Aksen warna emas ATABAN */
-    color: #000;
-}
-
-.custom-prev-btn { left: -15px; }
-.custom-next-btn { right: -15px; }
-
-@media (max-width: 650px) {
-    .custom-nav-btn { display: none; } /* Di HP langsung swipe layar */
-}
-
- /* GANTI .product-grid LAMA DENGAN INI */
-.product-grid {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    scroll-behavior: smooth !important;
-    scroll-snap-type: x mandatory !important;
-    gap: 22px !important;
-    padding: 10px 0 20px 0 !important;
-    width: 100%;
-}
-
-.product-grid::-webkit-scrollbar {
-    display: none;
-}
-.product-grid {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.product-card {
-    position: relative;
-    flex: 0 0 calc((100% - (22px * 3)) / 4) !important; /* Presisi 4 Kartu Slider */
-    scroll-snap-align: start !important;
-    box-sizing: border-box;
-    min-width: 0;
-    padding: 0;
-    overflow: visible;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-    border-color: #dcd6cd;
-}
-
-.img-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
-    border-radius: calc(var(--radius-card) - 4px);
-    background-color: #f2f0ec;
-}
-
-.editable-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.product-card:hover .editable-image {
-    transform: scale(1.05);
-}
-
-.wishlist-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(4px);
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #888888;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    z-index: 2;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
-
-.wishlist-icon:hover, 
-.wishlist-icon.active {
-    color: #e74c3c;
-    background: #ffffff;
-    transform: scale(1.1);
-}
-
-/* Detail Text & Informasi Produk */
-.product-info {
-    padding: 12px 4px 4px 4px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.nama-produk {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 6px;
-    letter-spacing: 0.3px;
-}
-
-.deskripsi-produk {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    line-height: 1.45;
-    margin-bottom: 12px;
-}
-
-/* Swatches Warna Bulat Modern */
-.color-swatches {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: auto;
-    padding-top: 8px;
-}
-
-.swatch {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    position: relative;
-}
-
-.swatch:hover {
-    transform: scale(1.25);
-}
-
-.swatch.active {
-    outline: 2px solid var(--text-primary);
-    outline-offset: 2px;
-}
-
-
-
-/* ===== 5. RESPONSIF MOBILE & TABLET ===== */
-@media (max-width: 992px) {
-    .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-    }
-}
-
-@media (max-width: 650px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-    .container {
-        padding: 20px 12px;
-    }
-
-    .product-card {
-        padding: 8px;
-    }
-
-    .nama-produk {
-        font-size: 0.85rem;
-    }
-
-    .deskripsi-produk {
-        font-size: 0.73rem;
-    }
-
-    .wishlist-icon {
-        width: 28px;
-        height: 28px;
-        font-size: 0.75rem;
-    }
-}
-
-/* =========================================================
-   ATABAN CATALOG — FINAL VISUAL SYSTEM
-   CSS-only refinement. HTML and JavaScript remain unchanged.
-   ========================================================= */
 :root {
     --bg-main: #f7f4ed;
     --bg-card: #fffefa;
@@ -532,12 +24,18 @@ body {
     --gold: #b49151;
     --gold-light: #d8c49a;
     --border-color: rgba(21, 21, 19, .14);
-    --shadow-sm: 0 1px 0 rgba(21, 21, 19, .08);
+    --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
     --shadow-lg: 0 22px 52px rgba(21, 21, 19, .12);
     --radius-card: 0;
     --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Poppins', system-ui, sans-serif;
+    --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
     --transition-smooth: all .38s cubic-bezier(.2, .7, .2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -548,10 +46,14 @@ html {
 body {
     min-width: 320px;
     overflow-x: hidden;
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
     background:
         linear-gradient(rgba(180, 145, 81, .035) 1px, transparent 1px) 0 0 / 100% 58px,
         var(--bg-main);
-    font-size: 16px;
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
 body::before {
@@ -570,14 +72,13 @@ body::before {
 .container {
     width: min(1280px, calc(100% - 64px));
     max-width: none;
+    margin: 0 auto;
     padding: 0;
 }
 
-/* Brand masthead */
+/* LOGO & BRAND MASTHEAD */
 .site-logo {
     position: relative;
-    top: auto;
-    left: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -600,9 +101,17 @@ body::before {
 }
 
 .logo-text {
-    color: #d3ad63;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
     font-size: clamp(42px, 5vw, 62px);
+    color: #d3ad63;
     letter-spacing: -2px;
+    line-height: 1;
+}
+
+.logo-text .cut {
+    display: inline-block;
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
 }
 
 .main-title {
@@ -612,10 +121,13 @@ body::before {
     padding: 20px 32px 46px;
     color: #f4f0e6;
     background: #11110f;
+    font-family: var(--font-heading);
     font-size: clamp(34px, 5vw, 64px);
     font-weight: 500;
     letter-spacing: .04em;
     line-height: 1.05;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .main-title::after {
@@ -629,94 +141,110 @@ body::before {
     letter-spacing: .2em;
 }
 
-/* Sticky category navigation */
+/* ===== 2. NAVIGASI DROPDOWN ===== */
 .catalog-nav {
+    position: sticky;
     top: 0;
-    margin: 0 0 74px;
+    z-index: 100;
     background: rgba(247, 244, 237, .94);
-    border-top: 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 8px 26px rgba(21, 21, 19, .035);
+    margin-bottom: 50px;
 }
 
 .nav-wrapper {
+    display: flex;
     justify-content: flex-start;
+    align-items: center;
     gap: clamp(26px, 4vw, 58px);
     width: min(1280px, calc(100% - 64px));
-    max-width: none;
+    margin: 0 auto;
     padding: 0;
 }
 
 .nav-group {
+    position: relative;
     padding: 21px 0;
 }
 
 .nav-group-title {
-    gap: 10px;
-    color: var(--text-primary);
     font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
     letter-spacing: .13em;
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-smooth);
 }
 
-.nav-group-title::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 13px;
-    left: 0;
-    height: 1px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform .3s ease;
-}
-
-.nav-group:hover .nav-group-title::after,
-.nav-group:focus-within .nav-group-title::after {
-    transform: scaleX(1);
-    transform-origin: left;
+.nav-group-title i {
+    font-size: 0.65rem;
+    transition: transform 0.3s ease;
 }
 
 .dropdown-menu {
+    position: absolute;
     top: calc(100% - 6px);
     left: 0;
-    min-width: 220px;
-    padding: 9px;
+    background: #ffffff;
     border: 1px solid var(--border-color);
-    border-radius: 0;
     box-shadow: 0 22px 48px rgba(21, 21, 19, .13);
+    padding: 9px;
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
     transform: translateY(13px);
+    display: flex;
+    flex-direction: column;
 }
 
 .nav-group:hover .dropdown-menu,
 .nav-group:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
     transform: translateY(0);
+}
+
+.nav-group:hover .nav-group-title i {
+    transform: rotate(180deg);
 }
 
 .dropdown-item {
     padding: 12px 14px;
-    border-radius: 0;
+    color: var(--text-muted);
+    text-decoration: none;
     font-size: 13px;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
 }
 
 .dropdown-item:hover {
-    padding-left: 20px;
     color: #fff;
-    background: #171715;
+    background-color: #171715;
+    padding-left: 20px;
 }
 
-/* Category hierarchy */
+/* ===== 3. SECTION TITLES ===== */
 .main-category-title {
     position: relative;
+    font-family: var(--font-heading);
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 500;
+    color: var(--text-primary);
     margin: 0 0 54px;
     padding: 0 0 23px 82px;
     border-bottom: 1px solid var(--text-primary);
-    font-size: clamp(38px, 5vw, 64px);
-    font-weight: 500;
     letter-spacing: -.025em;
     line-height: 1;
     text-align: left;
-    text-transform: none;
 }
 
 .main-category-title::before {
@@ -741,12 +269,15 @@ body::before {
 }
 
 .category-subtitle {
-    gap: 22px;
-    margin-bottom: 25px;
-    color: var(--text-primary);
     font-size: 13px;
     font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
     letter-spacing: .15em;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
 }
 
 .category-subtitle::before {
@@ -757,45 +288,92 @@ body::before {
 }
 
 .category-subtitle::after {
-    background: var(--border-color);
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-color);
 }
 
-/* Product layout */
+/* ===== 4. SLIDER WRAPPER & TOMBOL NAVIGASI BERSIH ===== */
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+
 .product-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 42px 22px;
-    align-items: stretch;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    gap: 22px;
+    padding: 10px 0 20px 0;
+    width: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.product-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .product-card {
     position: relative;
+    flex: 0 0 calc((100% - (22px * 3)) / 4);
+    scroll-snap-align: start;
+    box-sizing: border-box;
     min-width: 0;
     padding: 0;
-    overflow: visible;
     background: transparent;
     border: 0;
-    border-radius: 0;
-    box-shadow: none;
 }
 
-.product-card:hover {
-    border-color: transparent;
-    box-shadow: none;
-    transform: none;
+/* Tombol Navigasi Panah Tunggal */
+.slider-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    background-color: #11110f;
+    color: #d3ad63;
+    border: 1px solid #d3ad63;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: var(--transition-smooth);
 }
 
+.slider-btn:hover {
+    background-color: #d3ad63;
+    color: #11110f;
+}
+
+.slider-btn-prev { left: -21px; }
+.slider-btn-next { right: -21px; }
+
+/* KARTU PRODUK */
 .img-container {
+    position: relative;
+    width: 100%;
     aspect-ratio: 3 / 4;
     overflow: hidden;
     border: 1px solid rgba(21, 21, 19, .07);
-    border-radius: 0;
-    background: #eae6de;
+    background-color: #eae6de;
 }
 
 .editable-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     object-position: center top;
-    transform: scale(1.001);
-    transition: transform .8s var(--ease, cubic-bezier(.2, .7, .2, 1)), filter .5s ease;
+    display: block;
+    transition: transform .8s cubic-bezier(.2, .7, .2, 1), filter .5s ease;
 }
 
 .product-card:hover .editable-image {
@@ -804,19 +382,25 @@ body::before {
 }
 
 .wishlist-icon {
+    position: absolute;
     top: 14px;
     right: 14px;
-    width: 40px;
-    height: 40px;
-    color: #403f3b;
     background: rgba(255, 254, 250, .88);
     border: 1px solid rgba(21, 21, 19, .1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    box-shadow: none;
+    color: #403f3b;
     font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    z-index: 2;
 }
 
-.wishlist-icon:hover,
+.wishlist-icon:hover, 
 .wishlist-icon.active {
     color: #fff;
     background: #171715;
@@ -824,28 +408,32 @@ body::before {
 }
 
 .product-info {
-    min-width: 0;
     padding: 18px 2px 0;
-    border-top: 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .nama-produk {
-    margin: 0 0 8px;
     font-family: var(--font-heading);
     font-size: clamp(21px, 1.8vw, 28px);
     font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
     letter-spacing: -.015em;
     line-height: 1.16;
 }
 
 .deskripsi-produk {
-    margin: 0 0 17px;
-    color: var(--text-muted);
     font-size: 14px;
+    color: var(--text-muted);
     line-height: 1.65;
+    margin-bottom: 17px;
 }
 
 .color-swatches {
+    display: flex;
+    flex-wrap: wrap;
     gap: 9px;
     margin-top: auto;
     padding: 5px 3px 3px;
@@ -855,8 +443,11 @@ body::before {
     width: 18px;
     height: 18px;
     flex: 0 0 18px;
+    border-radius: 50%;
     border: 1px solid rgba(21, 21, 19, .18);
     box-shadow: 0 0 0 2px var(--bg-main);
+    cursor: pointer;
+    transition: var(--transition-smooth);
 }
 
 .swatch:hover {
@@ -868,74 +459,26 @@ body::before {
     outline-offset: 3px;
 }
 
-/* Reveal state support */
-.reveal {
-    opacity: 1;
-    transform: none;
-}
-
-/* Tablet */
+/* ===== 5. RESPONSIF MOBILE & TABLET ===== */
 @media (max-width: 1024px) {
-    .container,
-    .nav-wrapper {
+    .container, .nav-wrapper {
         width: min(100% - 40px, 860px);
     }
-
-    .product-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 38px 18px;
-    }
-
-    .nav-wrapper {
-        gap: 30px;
+    .product-card {
+        flex: 0 0 calc((100% - (22px * 2)) / 3);
     }
 }
 
-/* Mobile */
 @media (max-width: 700px) {
-    body::before {
-        padding-inline: 10px;
-        font-size: 9px;
-        letter-spacing: .12em;
-    }
-
-    .container,
-    .nav-wrapper {
+    .container, .nav-wrapper {
         width: calc(100% - 28px);
     }
 
-    .site-logo {
-        min-height: 92px;
-        padding: 20px 14px 6px;
-    }
-
-    .site-logo::before,
-    .site-logo::after {
-        width: 34px;
-        margin-inline: 12px;
-    }
-
-    .logo-text {
-        font-size: 44px;
-    }
-
-    .main-title {
-        padding: 17px 16px 34px;
-        font-size: 36px;
-    }
-
-    .main-title::after {
-        margin-top: 14px;
-        font-size: 9px;
-        letter-spacing: .13em;
-    }
-
-    .catalog-nav {
-        margin-bottom: 55px;
+    .slider-btn {
+        display: none !important;
     }
 
     .nav-wrapper {
-        justify-content: flex-start;
         gap: 25px;
         overflow-x: auto;
         scrollbar-width: none;
@@ -945,28 +488,8 @@ body::before {
         display: none;
     }
 
-    .nav-group {
-        flex: 0 0 auto;
-        padding: 17px 0;
-    }
-
-    .nav-group-title {
-        font-size: 10px;
-        white-space: nowrap;
-    }
-
-    .dropdown-menu {
-        position: fixed;
-        top: auto;
-        right: 14px;
-        left: 14px;
-        min-width: 0;
-        transform: translateY(10px);
-    }
-
-    .nav-group:hover .dropdown-menu,
-    .nav-group:focus-within .dropdown-menu {
-        transform: translateY(0);
+    .product-card {
+        flex: 0 0 calc((100% - 12px) / 2);
     }
 
     .main-category-title {
@@ -980,120 +503,21 @@ body::before {
         display: block;
         margin-bottom: 13px;
     }
-
-    .main-category-title:not(:first-child) {
-        margin-top: 82px;
-    }
-
-    .sub-category {
-        margin-bottom: 60px;
-    }
-
-    .category-subtitle {
-        gap: 12px;
-        margin-bottom: 18px;
-        font-size: 11px;
-        letter-spacing: .11em;
-    }
-
-    .category-subtitle::before {
-        width: 18px;
-    }
-
-    .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 34px 10px;
-    }
-
-    .img-container {
-        aspect-ratio: 3 / 4;
-    }
-
-    .wishlist-icon {
-        top: 9px;
-        right: 9px;
-        width: 32px;
-        height: 32px;
-        font-size: 12px;
-    }
-
-    .product-info {
-        padding-top: 13px;
-    }
-
-    .nama-produk {
-        margin-bottom: 6px;
-        font-size: 19px;
-    }
-
-    .deskripsi-produk {
-        display: -webkit-box;
-        margin-bottom: 13px;
-        overflow: hidden;
-        font-size: 12px;
-        line-height: 1.55;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-    }
-
-    .color-swatches {
-        gap: 8px;
-    }
-
-    .swatch {
-        width: 16px;
-        height: 16px;
-        flex-basis: 16px;
-    }
-}
-
-@media (max-width: 380px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-        gap: 42px;
-    }
-
-    .nama-produk {
-        font-size: 23px;
-    }
-
-    .deskripsi-produk {
-        font-size: 14px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-    }
-}
-
-/* Pastikan area header hitam selalu sejajar penuh, termasuk di layar mobile. */
-body > .site-logo,
-body > h1.main-title.container {
-    width: 100%;
-    max-width: none;
-    margin-right: 0;
-    margin-left: 0;
-    box-sizing: border-box;
-    background-color: #11110f;
 }
     </style>
 </head>
 <body>
 
-    <!-- Container Logo di Pojok Kiri Atas -->
-<div class="site-logo">
-  <span class="logo-text">a<span class="cut">t</span>a<span class="cut">b</span>an</span>
-</div>
+    <!-- Container Logo -->
+    <div class="site-logo">
+        <span class="logo-text">a<span class="cut">t</span>a<span class="cut">b</span>an</span>
+    </div>
 
     <h1 class="main-title container">Katalog Koleksi</h1>
 
     <!-- NAVIGASI DROPDOWN -->
     <nav class="catalog-nav">
         <div class="nav-wrapper">
-            
             <div class="nav-group">
                 <a href="#office-wear" class="nav-group-title">
                     Woman Office Wear <i class="fas fa-chevron-down"></i>
@@ -1115,35 +539,64 @@ body > h1.main-title.container {
                     <a href="#kategori-tunik" class="dropdown-item">Tunik</a>
                 </div>
             </div>
+
             <div class="nav-group">
-                 <a href="#men-wear" class="nav-group-title">Men Wear <i class="fas fa-chevron-down"></i>
+                <a href="#men-wear" class="nav-group-title">
+                    Men Wear <i class="fas fa-chevron-down"></i>
                 </a>
-            <div class="dropdown-menu">
-                <a href="#kategori-kemeja-pria" class="dropdown-item">Kemeja</a>
-            </div>
+                <div class="dropdown-menu">
+                    <a href="#kategori-kemeja-pria" class="dropdown-item">Kemeja</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="container">
 
-        <!-- ========================================== -->
-        <!-- 1. OFFICE WEAR                             -->
-        <!-- ========================================== -->
+        <!-- 1. OFFICE WEAR -->
         <h2 id="office-wear" class="main-category-title">Office Wear</h2>
 
-        <!-- Sub Kemeja -->
+       <!-- Sub Kemeja -->
         <div id="kategori-kemeja" class="sub-category">
             <h3 class="category-subtitle">Kemeja</h3>
             <div class="product-grid">
-                <div class="product-card reveal item-produk">
+                <!-- Produk 1: Keira -->
+                <div class="product-card item-produk">
                     <div class="img-container">
                         <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
                         <img src="fotokatalog/keira.png" alt="Keira Shirt Ataban Fashion" class="editable-image">
                     </div>
                     <div class="product-info">
-                        <h3 class="editable-text nama-produk">Keira Shirt</h3>
-                        <p class="editable-text deskripsi-produk">Kemeja katun formal dengan aksen lipit rapi, nyaman untuk aktivitas harian.</p>
+                        <h3 class="nama-produk">Keira Shirt</h3>
+                    </div>
+                </div>
+
+                <!-- Produk 2: Elara -->
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-elara" src="fotokatalog/elarabiru.png" alt="Elara Shirt Ataban Fashion" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Elara Shirt</h3>
+                        <div class="color-swatches">
+                            <div class="swatch active" style="background-color: #3788d4;" title="Biru Muda" onclick="changeImage('img-elara', 'fotokatalog/elarabiru.png', this)"></div>
+                            <div class="swatch" style="background-color: #be984a;" title="Caramel" onclick="changeImage('img-elara', 'fotokatalog/elaracaramel.png', this)"></div>
+                            <div class="swatch" style="background-color: #9e3f0b;" title="Bata" onclick="changeImage('img-elara', 'fotokatalog/elarabata.jpeg', this)"></div>
+                            <div class="swatch" style="background-color: #d8c9ab;" title="Coksu" onclick="changeImage('img-elara', 'fotokatalog/elaracoksu.png', this)"></div>
+                            <div class="swatch" style="background-color: #0d2872;" title="Navy" onclick="changeImage('img-elara', 'fotokatalog/elaranavy.png', this)"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 3: Lyra -->
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/lyrahitam.png" alt="Lyra Shirt Ataban Fashion" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Lyra Shirt</h3>                    
                     </div>
                 </div>
             </div>
@@ -1153,24 +606,22 @@ body > h1.main-title.container {
         <div id="kategori-blouse" class="sub-category">
             <h3 class="category-subtitle">Blouse</h3>
             <div class="product-grid">
-                <div class="product-card reveal item-produk">
+                <div class="product-card item-produk">
                     <div class="img-container">
                         <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
                         <img src="fotokatalog/niki.png" alt="Blouse Niki Ataban Fashion" class="editable-image">
                     </div>
                     <div class="product-info">
-                        <h3 class="editable-text nama-produk">Blouse Niki</h3>
-                        <p class="editable-text deskripsi-produk">Blouse bergaya minimalis dengan kerah sanghai dan bahan adem.</p>
+                        <h3 class="nama-produk">Blouse Niki</h3>
                     </div>
                 </div>
-                <div class="product-card reveal item-produk">
+                <div class="product-card item-produk">
                     <div class="img-container">
                         <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
                         <img src="fotokatalog/vania.png" alt="Blouse Vania Ataban Fashion" class="editable-image">
                     </div>
                     <div class="product-info">
-                        <h3 class="editable-text nama-produk">Blouse Vania</h3>
-                        <p class="editable-text deskripsi-produk">Blouse elegan dengan potongan wudhu-friendly dan detil kancing eksklusif.</p>
+                        <h3 class="nama-produk">Blouse Vania</h3>                      
                     </div>
                 </div>
             </div>
@@ -1180,14 +631,13 @@ body > h1.main-title.container {
         <div id="kategori-jas" class="sub-category">
             <h3 class="category-subtitle">Blazer & Jas</h3>
             <div class="product-grid">
-                <div class="product-card reveal item-produk">
+                <div class="product-card item-produk">
                     <div class="img-container">
                         <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                        <img src="images/" alt="Coming soon Ataban Fashion" class="editable-image">
+                        <img src="fotokatalog/jas.png" alt="Coming soon Ataban Fashion" class="editable-image">
                     </div>
                     <div class="product-info">
-                        <h3 class="editable-text nama-produk">Blazer Collection</h3>
-                        <p class="editable-text deskripsi-produk">Koleksi blazer semi-formal segera hadir.</p>
+                        <h3 class="nama-produk">Blazer Collection</h3>                    
                     </div>
                 </div>
             </div>
@@ -1197,255 +647,255 @@ body > h1.main-title.container {
         <div id="kategori-bawahan" class="sub-category">
             <h3 class="category-subtitle">Celana & Rok</h3>
             <div class="product-grid">
-                <div class="product-card reveal item-produk">
+                <div class="product-card item-produk">
                     <div class="img-container">
                         <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
                         <img src="fotokatalog/nala.png" alt="Celana Ataban Fashion" class="editable-image">
                     </div>
                     <div class="product-info">
-                        <h3 class="editable-text nama-produk">Nala Pants</h3>
-                        <p class="editable-text deskripsi-produk">Celana kain high-waist berpotongan lurus.</p>
+                        <h3 class="nama-produk">Nala Pants</h3>
                     </div>
                 </div>
-                <div class="product-card reveal item-produk">
+                <div class="product-card item-produk">
                     <div class="img-container">
                         <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
                         <img src="fotokatalog/nara.png" alt="Rok Ataban Fashion" class="editable-image">
                     </div>
                     <div class="product-info">
-                        <h3 class="editable-text nama-produk">Nara Skirt</h3>
-                        <p class="editable-text deskripsi-produk">Rok A-line berbahan jatuh dan fleksibel.</p>
+                        <h3 class="nama-produk">Nara Skirt</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- 2. MUSLIM WEAR                             -->
-        <!-- ========================================== -->
+        <!-- 2. MUSLIM WEAR -->
         <h2 id="muslim-wear" class="main-category-title">Muslim Wear</h2>
 
         <!-- Sub Dress / Gamis -->
-<div id="kategori-dress" class="sub-category">
-    <h3 class="category-subtitle reveal">Koleksi Dress / Gamis</h3>
-    <div class="product-grid">
+        <div id="kategori-dress" class="sub-category">
+            <h3 class="category-subtitle">Koleksi Dress / Gamis</h3>
+            <div class="product-grid">
 
-        <!-- Olivia Dress -->
-        <div class="product-card reveal item-produk">
-            <div class="img-container">
-                <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                <img src="fotokatalog/olivia.png" alt="Olivia Dress Ataban" class="editable-image">
-            </div>
-            <div class="product-info">
-                <h3 class="editable-text nama-produk">Olivia Dress</h3>
-                <p class="editable-text deskripsi-produk">Dress anggun berbahan jatuh dengan siluet A-line yang elegan untuk acara formal.</p>
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/olivia.png" alt="Olivia Dress Ataban" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Olivia Dress</h3>
+                    </div>
+                </div>
+
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/davia.png" alt="Davia Dress Ataban Fashion" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Davia Dress</h3>
+
+                    </div>
+                </div>
+
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/elvara.png" alt="Elvara Dress Ataban Fashion" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Elvara Dress</h3>
+                    </div>
+                </div>
+
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/zeline.png" alt="Zeline Dress Ataban Fashion" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Zeline Dress</h3>
+                    </div>
+                </div>
+
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/arianadress.png" alt="Ariana Dress Ataban Fashion" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Ariana Dress</h3>
+                    </div>
+                </div>
+
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/nadinedress.png" alt="Nadine Dress Ataban Fashion" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Nadine Dress</h3>
+                    </div>
+                </div>
+
+
             </div>
         </div>
-
-        <!-- Davia Dress -->
-        <div class="product-card reveal item-produk">
-            <div class="img-container">
-                <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                <img src="fotokatalog/davia.png" alt="Davia Dress Ataban Fashion" class="editable-image">
-            </div>
-            <div class="product-info">
-                <h3 class="editable-text nama-produk">Davia Dress</h3>
-                <p class="editable-text deskripsi-produk">Gamis simpel nan fleksibel dengan aksen kancing manis di bagian depan.</p>
-            </div>
-        </div>
-
-        <!-- Elvara Dress -->
-        <div class="product-card reveal item-produk">
-            <div class="img-container">
-                <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                <img src="fotokatalog/elvara.png" alt="Elvara Dress Ataban Fashion" class="editable-image">
-            </div>
-            <div class="product-info">
-                <h3 class="editable-text nama-produk">Elvara Dress</h3>
-                <p class="editable-text deskripsi-produk">Dress eksklusif berpotongan mewah, cocok untuk tampilan semi-formal hingga pesta.</p>
-            </div>
-        </div>
-
-        <!-- Zeline Dress -->
-        <div class="product-card reveal item-produk">
-            <div class="img-container">
-                <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                <img src="fotokatalog/zeline.png" alt="Zeline Dress Ataban Fashion" class="editable-image">
-            </div>
-            <div class="product-info">
-                <h3 class="editable-text nama-produk">Zeline Dress</h3>
-                <p class="editable-text deskripsi-produk">Tampilan modern kasual dengan bahan yang ringan dan nyaman dipakai seharian.</p>
-            </div>
-        </div>
-
-        <!-- Ariana Dress -->
-        <div class="product-card reveal item-produk">
-            <div class="img-container">
-                <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                <img src="fotokatalog/ariana.png" alt="Ariana Dress Ataban Fashion" class="editable-image">
-            </div>
-            <div class="product-info">
-                <h3 class="editable-text nama-produk">Ariana Dress</h3>
-                <p class="editable-text deskripsi-produk">Gamis berdesain timeless dengan detail lengan wudhu-friendly yang praktis.</p>
-            </div>
-        </div>
-    </div>
-</div>
 
         <!-- Sub Tunik -->
         <div id="kategori-tunik" class="sub-category">
             <h3 class="category-subtitle">Koleksi Tunik</h3>
             <div class="product-grid">
 
-               <!-- Tunik Ahda -->
-<div class="product-card reveal item-produk">
+               <!-- Tunik Sienna -->
+        <div class="product-card item-produk">
     <div class="img-container">
         <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-        <img id="img-ahda" src="fotokatalog/ahdamaroon.png" alt="Tunik Ahda" class="editable-image">
+        <!-- ID diubah menjadi img-sienna dan src dilengkapi -->
+        <img id="img-sienna" src="fotokatalog/seinnahitam.JPEG" alt="Tunik Sienna" class="editable-image">
     </div>
     <div class="product-info">
-        <h3 class="editable-text nama-produk">Tunik Ahda</h3>
-        <p class="editable-text deskripsi-produk">Tunik katun dobby dengan tekstur elegan dan pilihan warna luas.</p>
+        <h3 class="nama-produk">Tunik Sienna</h3>
         <div class="color-swatches">
-            <div class="swatch active" style="background-color: #8b2f51;" title="Maroon" onclick="changeImage('img-ahda', 'fotokatalog/ahdamaroon.png', this)"></div> 
-            <div class="swatch" style="background-color: #d4b064;" title="Khaki" onclick="changeImage('img-ahda', 'fotokatalog/ahdakhaki.png', this)"></div> 
-            <div class="swatch" style="background-color: #ddc6b1;" title="Coksu" onclick="changeImage('img-ahda', 'fotokatalog/ahdacoksu.png', this)"></div> 
-            <div class="swatch" style="background-color: #ffffff;" title="Putih" onclick="changeImage('img-ahda', 'fotokatalog/ahdaputih.png', this)"></div> 
-            <div class="swatch" style="background-color: #ddd181;" title="Olive" onclick="changeImage('img-ahda', 'fotokatalog/ahdaolive.png', this)"></div> 
-            <div class="swatch" style="background-color: #b9d6bf;" title="Sage" onclick="changeImage('img-ahda', 'fotokatalog/ahdasage.png', this)"></div> 
-            <div class="swatch" style="background-color: #d4ebd9;" title="Mint" onclick="changeImage('img-ahda', 'fotokatalog/ahdamint.png', this)"></div> 
-            <div class="swatch" style="background-color: #a294b6;" title="Ungu" onclick="changeImage('img-ahda', 'fotokatalog/ahdaungu.png', this)"></div> 
-            <div class="swatch" style="background-color: #c4aca2;" title="Cokelat" onclick="changeImage('img-ahda', 'fotokatalog/ahdacoklat.png', this)"></div> 
+            <div class="swatch active" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-sienna', 'fotokatalog/seinnahitam.jpeg', this)"></div> 
+            <div class="swatch" style="background-color: #f7f5f3;" title="Putih" onclick="changeImage('img-sienna', 'fotokatalog/seinnaputih.jpeg', this)"></div> 
         </div>
-    </div>
-</div>
+    </div> 
+</div> 
+                <!-- Tunik Ahda -->
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-ahda" src="fotokatalog/ahdamaroon.png" alt="Tunik Ahda" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Tunik Ahda</h3>
+                        <div class="color-swatches">
+                            <div class="swatch active" style="background-color: #8b2f51;" title="Maroon" onclick="changeImage('img-ahda', 'fotokatalog/ahdamaroon.png', this)"></div> 
+                            <div class="swatch" style="background-color: #d4b064;" title="Khaki" onclick="changeImage('img-ahda', 'fotokatalog/ahdakhaki.png', this)"></div> 
+                            <div class="swatch" style="background-color: #ddc6b1;" title="Coksu" onclick="changeImage('img-ahda', 'fotokatalog/ahdacoksu.png', this)"></div> 
+                            <div class="swatch" style="background-color: #ffffff;" title="Putih" onclick="changeImage('img-ahda', 'fotokatalog/ahdaputih.png', this)"></div> 
+                            <div class="swatch" style="background-color: #ddd181;" title="Olive" onclick="changeImage('img-ahda', 'fotokatalog/ahdaolive.png', this)"></div> 
+                            <div class="swatch" style="background-color: #b9d6bf;" title="Sage" onclick="changeImage('img-ahda', 'fotokatalog/ahdasage.png', this)"></div> 
+                            <div class="swatch" style="background-color: #d4ebd9;" title="Mint" onclick="changeImage('img-ahda', 'fotokatalog/ahdamint.png', this)"></div> 
+                            <div class="swatch" style="background-color: #a294b6;" title="Ungu" onclick="changeImage('img-ahda', 'fotokatalog/ahdaungu.png', this)"></div> 
+                            <div class="swatch" style="background-color: #c4aca2;" title="Cokelat" onclick="changeImage('img-ahda', 'fotokatalog/ahdacoklat.png', this)"></div> 
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Tunik Sabila -->
-<div class="product-card reveal item-produk">
-    <div class="img-container">
-        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-        <img id="img-sabila" src="fotokatalog/sabilacoksu.png" alt="Tunik Sabila" class="editable-image">
-    </div>
-    <div class="product-info">
-        <h3 class="editable-text nama-produk">Tunik Sabila</h3>
-        <p class="editable-text deskripsi-produk">Tunik simpel nan manis dengan detail slit samping yang modern.</p>
-        <div class="color-swatches">
-            <div class="swatch active" style="background-color: #e6c4bc;" title="Coksu" onclick="changeImage('img-sabila', 'fotokatalog/sabilacoksu.png', this)"></div>
-            <div class="swatch" style="background-color: #900000;" title="Maroon" onclick="changeImage('img-sabila', 'fotokatalog/sabilamaroon.png', this)"></div>
-            <div class="swatch" style="background-color: #dfa4ad;" title="Dusty Pink" onclick="changeImage('img-sabila', 'fotokatalog/sabiladusty.png', this)"></div>
-            <div class="swatch" style="background-color: #1d3874;" title="Navy" onclick="changeImage('img-sabila', 'fotokatalog/sabilanavy.png', this)"></div>
-            <div class="swatch" style="background-color: #a37a77;" title="Milo" onclick="changeImage('img-sabila', 'fotokatalog/sabilamilo.png', this)"></div>
-            <div class="swatch" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-sabila', 'fotokatalog/sabilahitam.png', this)"></div>
-        </div>
-    </div>
-</div>
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-sabila" src="fotokatalog/sabilacoksu.png" alt="Tunik Sabila" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Tunik Sabila</h3>
+                        <div class="color-swatches">
+                            <div class="swatch active" style="background-color: #e6c4bc;" title="Coksu" onclick="changeImage('img-sabila', 'fotokatalog/sabilacoksu.png', this)"></div>
+                            <div class="swatch" style="background-color: #900000;" title="Maroon" onclick="changeImage('img-sabila', 'fotokatalog/sabilamaroon.png', this)"></div>
+                            <div class="swatch" style="background-color: #dfa4ad;" title="Dusty Pink" onclick="changeImage('img-sabila', 'fotokatalog/sabiladusty.png', this)"></div>
+                            <div class="swatch" style="background-color: #1d3874;" title="Navy" onclick="changeImage('img-sabila', 'fotokatalog/sabilanavy.png', this)"></div>
+                            <div class="swatch" style="background-color: #a37a77;" title="Milo" onclick="changeImage('img-sabila', 'fotokatalog/sabilamilo.png', this)"></div>
+                            <div class="swatch" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-sabila', 'fotokatalog/sabilahitam.png', this)"></div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Tunik Atmim 1 -->
-<div class="product-card reveal item-produk">
-    <div class="img-container">
-        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-        <img id="img-atmim" src="fotokatalog/atmimniagara.png" alt="Tunik Atmim" class="editable-image">
-    </div>
-    <div class="product-info">
-        <h3 class="editable-text nama-produk">Tunik Atmim Series 1</h3>
-        <p class="editable-text deskripsi-produk">Tunik katun linen super adem dengan ragam varian warna pastel dan netral.</p>
-        <div class="color-swatches">
-            <div class="swatch active" style="background-color: #6a91d3;" title="Niagara" onclick="changeImage('img-atmim', 'fotokatalog/atmimniagara.png', this)"></div>
-            <div class="swatch" style="background-color: #a56e6e;" title="Brown Milo" onclick="changeImage('img-atmim', 'fotokatalog/atmimbrownmilo.png', this)"></div>
-            <div class="swatch" style="background-color: #1d3874;" title="Navy" onclick="changeImage('img-atmim', 'fotokatalog/atmimnavy.png', this)"></div>
-            <div class="swatch" style="background-color: #cf967b;" title="Coffe Milk" onclick="changeImage('img-atmim', 'fotokatalog/atmimcofeemilk.png', this)"></div>
-            <div class="swatch" style="background-color: #b950b9;" title="Lavender" onclick="changeImage('img-atmim', 'fotokatalog/atmmimlavender.png', this)"></div>
-            <div class="swatch" style="background-color: #6bb18a;" title="Hijau Tosca" onclick="changeImage('img-atmim', 'fotokatalog/atmimhijautosca.png', this)"></div>
-            <div class="swatch" style="background-color: #8a0137;" title="Maroon" onclick="changeImage('img-atmim', 'fotokatalog/atmimmaroon.png', this)"></div>
-            <div class="swatch" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-atmim', 'fotokatalog/atmimhitam.png', this)"></div>
-            <div class="swatch" style="background-color: #484b2d;" title="Olive" onclick="changeImage('img-atmim', 'fotokatalog/atmimolive.png', this)"></div>
-            <div class="swatch" style="background-color: #f2aecb;" title="Pink" onclick="changeImage('img-atmim', 'fotokatalog/atmimdusty.png', this)"></div>
-            <div class="swatch" style="background-color: #ffffff;" title="Putih Tulang" onclick="changeImage('img-atmim', 'fotokatalog/atmimputihbw.png', this)"></div>
-            <div class="swatch" style="background-color: #dfbd3a;" title="Mustard" onclick="changeImage('img-atmim', 'fotokatalog/atmimmustard.png', this)"></div>
-            <div class="swatch" style="background-color: #afa472;" title="Army" onclick="changeImage('img-atmim', 'fotokatalog/atmimarmy.png', this)"></div>
-            <div class="swatch" style="background-color: #d2691e;" title="Merah Bata 1" onclick="changeImage('img-atmim', 'fotokatalog/atmimmerahbata1.png', this)"></div>
-        </div>
-    </div>
-</div>
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-atmim" src="fotokatalog/atmimniagara.png" alt="Tunik Atmim" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Tunik Atmim Series 1</h3>
+                        <div class="color-swatches">
+                            <div class="swatch active" style="background-color: #6a91d3;" title="Niagara" onclick="changeImage('img-atmim', 'fotokatalog/atmimniagara.png', this)"></div>
+                            <div class="swatch" style="background-color: #a56e6e;" title="Brown Milo" onclick="changeImage('img-atmim', 'fotokatalog/atmimbrownmilo.png', this)"></div>
+                            <div class="swatch" style="background-color: #1d3874;" title="Navy" onclick="changeImage('img-atmim', 'fotokatalog/atmimnavy.png', this)"></div>
+                            <div class="swatch" style="background-color: #cf967b;" title="Coffe Milk" onclick="changeImage('img-atmim', 'fotokatalog/atmimcofeemilk.png', this)"></div>
+                            <div class="swatch" style="background-color: #b950b9;" title="Lavender" onclick="changeImage('img-atmim', 'fotokatalog/atmmimlavender.png', this)"></div>
+                            <div class="swatch" style="background-color: #6bb18a;" title="Hijau Tosca" onclick="changeImage('img-atmim', 'fotokatalog/atmimhijautosca.png', this)"></div>
+                            <div class="swatch" style="background-color: #8a0137;" title="Maroon" onclick="changeImage('img-atmim', 'fotokatalog/atmimmaroon.png', this)"></div>
+                            <div class="swatch" style="background-color: #000000;" title="Hitam" onclick="changeImage('img-atmim', 'fotokatalog/atmimhitam.png', this)"></div>
+                            <div class="swatch" style="background-color: #484b2d;" title="Olive" onclick="changeImage('img-atmim', 'fotokatalog/atmimolive.png', this)"></div>
+                            <div class="swatch" style="background-color: #f2aecb;" title="Pink" onclick="changeImage('img-atmim', 'fotokatalog/atmimdusty.png', this)"></div>
+                            <div class="swatch" style="background-color: #ffffff;" title="Putih Tulang" onclick="changeImage('img-atmim', 'fotokatalog/atmimputihbw.png', this)"></div>
+                            <div class="swatch" style="background-color: #dfbd3a;" title="Mustard" onclick="changeImage('img-atmim', 'fotokatalog/atmimmustard.png', this)"></div>
+                            <div class="swatch" style="background-color: #afa472;" title="Army" onclick="changeImage('img-atmim', 'fotokatalog/atmimarmy.png', this)"></div>
+                            <div class="swatch" style="background-color: #d2691e;" title="Merah Bata 1" onclick="changeImage('img-atmim', 'fotokatalog/atmimmerahbata1.png', this)"></div>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Tunik Atmim 2 -->
-<div class="product-card reveal item-produk">
-    <div class="img-container">
-        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-        <img id="img-atmim-2" src="fotokatalog/atmimnude.png" alt="Tunik Atmim" class="editable-image">
-    </div>
-    <div class="product-info">
-        <h3 class="editable-text nama-produk">Tunik Atmim Series 2</h3>
-        <p class="editable-text deskripsi-produk">Lanjutan koleksi Tunik Atmim dengan varian tone warna bold & hangat.</p>
-        <div class="color-swatches">
-            <div class="swatch active" style="background-color: #F4D1D8;" title="Nude" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimnude.png', this)"></div>
-            <div class="swatch" style="background-color: #4ebd85;" title="Sage" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimsage.png', this)"></div>
-            <div class="swatch" style="background-color: #bbbfc2;" title="Abu Muda" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimabumuda.png', this)"></div>
-            <div class="swatch" style="background-color: #646662;" title="Abu Tua" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimabutua.png', this)"></div>
-            <div class="swatch" style="background-color: #1B4D8a;" title="Biru Denim 1" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimdenim1.png', this)"></div>
-            <div class="swatch" style="background-color: #1B4D8E;" title="Biru Denim 2" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimdenim2.png', this)"></div>
-            <div class="swatch" style="background-color: #1B4D3E;" title="Hijau Botol" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimhijaubotol.png', this)"></div>
-            <div class="swatch" style="background-color: #D8A49D;" title="Salem" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimsalem.png', this)"></div>
-            <div class="swatch" style="background-color: #8A1C14;" title="Merah Cabe" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimmerahcabe.png', this)"></div>
-            <div class="swatch" style="background-color: #B84A39;" title="Merah Bata 2" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimmerahbata2.png', this)"></div>
-        </div>
-    </div>
-</div>
-</div>
-<!-- ========================================== -->
-<!-- 3. MEN WEAR                                -->
-<!-- ========================================== -->
+                <!-- Tunik Atmim 2 -->
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img id="img-atmim-2" src="fotokatalog/atmimnude.png" alt="Tunik Atmim" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Tunik Atmim Series 2</h3>
+                        <div class="color-swatches">
+                            <div class="swatch active" style="background-color: #F4D1D8;" title="Nude" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimnude.png', this)"></div>
+                            <div class="swatch" style="background-color: #4ebd85;" title="Sage" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimsage.png', this)"></div>
+                            <div class="swatch" style="background-color: #bbbfc2;" title="Abu Muda" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimabumuda.png', this)"></div>
+                            <div class="swatch" style="background-color: #646662;" title="Abu Tua" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimabutua.png', this)"></div>
+                            <div class="swatch" style="background-color: #1B4D8a;" title="Biru Denim 1" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimdenim1.png', this)"></div>
+                            <div class="swatch" style="background-color: #1B4D8E;" title="Biru Denim 2" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimdenim2.png', this)"></div>
+                            <div class="swatch" style="background-color: #1B4D3E;" title="Hijau Botol" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimhijaubotol.png', this)"></div>
+                            <div class="swatch" style="background-color: #D8A49D;" title="Salem" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimsalem.png', this)"></div>
+                            <div class="swatch" style="background-color: #8A1C14;" title="Merah Cabe" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimmerahcabe.png', this)"></div>
+                            <div class="swatch" style="background-color: #B84A39;" title="Merah Bata 2" onclick="changeImage('img-atmim-2', 'fotokatalog/atmimmerahbata2.png', this)"></div>
+                        </div>
+                    </div>
+                </div>
 
-<h2 id="men-wear" class="main-category-title">Men Wear</h2>
-
-<!-- Kemeja Pria -->
-<div id="kategori-kemeja-pria" class="sub-category">
-    <h3 class="category-subtitle reveal">Koleksi Kemeja</h3>
-
-    <div class="product-grid">
-
-        <!-- Kemeja Hitam -->
-        <div class="product-card reveal item-produk">
-            <div class="img-container">
-                <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                <img src="fotokatalog/kemeja-hitam.png" alt="Kemeja Hitam ATABAN" class="editable-image">
-            </div>
-
-            <div class="product-info">
-                <h3 class="editable-text nama-produk">Kemeja Hitam</h3>
-                <p class="editable-text deskripsi-produk">
-                    Kemeja hitam pria dengan tampilan rapi, modern, dan profesional.
-                </p>
             </div>
         </div>
 
-        <!-- Kemeja Navy -->
-        <div class="product-card reveal item-produk">
-            <div class="img-container">
-                <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
-                <img src="fotokatalog/kemeja-navy.png" alt="Kemeja Navy ATABAN Fashion" class="editable-image">
-            </div>
+        <!-- 3. MEN WEAR -->
+        <h2 id="men-wear" class="main-category-title">Men Wear</h2>
 
-            <div class="product-info">
-                <h3 class="editable-text nama-produk">Kemeja Navy</h3>
-                <p class="editable-text deskripsi-produk">
-                    Kemeja navy pria yang elegan dan nyaman untuk kegiatan profesional.
-                </p>
+        <!-- Kemeja Pria -->
+        <div id="kategori-kemeja-pria" class="sub-category">
+            <h3 class="category-subtitle">Koleksi Kemeja</h3>
+            <div class="product-grid">
+
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/kemeja-hitam.png" alt="Kemeja Hitam ATABAN" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Kemeja Hitam</h3>
+                    </div>
+                </div>
+
+                <div class="product-card item-produk">
+                    <div class="img-container">
+                        <i class="fas fa-heart wishlist-icon" onclick="toggleWishlist(this)"></i>
+                        <img src="fotokatalog/kemeja-navy.png" alt="Kemeja Navy ATABAN Fashion" class="editable-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="nama-produk">Kemeja Navy</h3>
+                    </div>
+                </div>
+
             </div>
         </div>
 
     </div>
-</div>
 
 <script>
+    // 1. Fungsi Mengubah Gambar Warna Produk
     function changeImage(imageId, newSrc, swatchElement) {
-        // 1. Ganti sumber gambar
         const imgElement = document.getElementById(imageId);
         if (imgElement) {
             imgElement.src = newSrc;
         }
 
-        // 2. Update tampilan indikator lingkaran warna yang aktif
         const parentCard = swatchElement.closest('.product-card');
         if (parentCard) {
             const swatches = parentCard.querySelectorAll('.swatch');
@@ -1454,108 +904,57 @@ body > h1.main-title.container {
         }
     }
 
+    // 2. Fungsi Wishlist Heart Icon
     function toggleWishlist(icon) {
         icon.classList.toggle('active');
     }
-    function changeImage(imageId, newSrc, swatchElement) {
-        const imgElement = document.getElementById(imageId);
 
-        if (imgElement) {
-            imgElement.src = newSrc;
-        }
+    // 3. Script Tunggal Pembuat Tombol Panah Slider & Penggeser Produk
+    document.addEventListener("DOMContentLoaded", function() {
+        const grids = document.querySelectorAll('.product-grid');
 
-        const parentCard = swatchElement.closest('.product-card');
+        grids.forEach(grid => {
+            // Sediakan pembungkus slider jika belum ada
+            if (!grid.parentElement.classList.contains('slider-wrapper')) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'slider-wrapper';
+                grid.parentNode.insertBefore(wrapper, grid);
+                wrapper.appendChild(grid);
 
-        if (parentCard) {
-            const swatches = parentCard.querySelectorAll('.swatch');
+                // Buat Tombol Panah Kiri (Previous)
+                const prevBtn = document.createElement('button');
+                prevBtn.type = 'button';
+                prevBtn.className = 'slider-btn slider-btn-prev';
+                prevBtn.innerHTML = '‹';
+                prevBtn.setAttribute('aria-label', 'Produk Sebelumnya');
 
-            swatches.forEach(function (swatch) {
-                swatch.classList.remove('active');
-            });
+                // Buat Tombol Panah Kanan (Next)
+                const nextBtn = document.createElement('button');
+                nextBtn.type = 'button';
+                nextBtn.className = 'slider-btn slider-btn-next';
+                nextBtn.innerHTML = '›';
+                nextBtn.setAttribute('aria-label', 'Produk Selanjutnya');
 
-            swatchElement.classList.add('active');
-        }
-    }
+                // Event Klik Penggeser Halus (Smooth Scroll)
+                prevBtn.onclick = (e) => {
+                    e.preventDefault();
+                    const card = grid.querySelector('.product-card');
+                    const amount = card ? (card.offsetWidth + 22) * 2 : 300;
+                    grid.scrollBy({ left: -amount, behavior: 'smooth' });
+                };
 
-    function toggleWishlist(icon) {
-        icon.classList.toggle('active');
-    }
-    
-document.addEventListener("DOMContentLoaded", function() {
-    // Otomatis menambahkan tombol panah ke semua sub-kategori tanpa mengubah struktur HTML
-    const subCategories = document.querySelectorAll('.sub-category');
+                nextBtn.onclick = (e) => {
+                    e.preventDefault();
+                    const card = grid.querySelector('.product-card');
+                    const amount = card ? (card.offsetWidth + 22) * 2 : 300;
+                    grid.scrollBy({ left: amount, behavior: 'smooth' });
+                };
 
-    subCategories.forEach(sub => {
-        const grid = sub.querySelector('.product-grid');
-        if (!grid) return;
-
-        // Buat Tombol Kiri
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'custom-nav-btn custom-prev-btn';
-        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-        
-        // Buat Tombol Kanan
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'custom-nav-btn custom-next-btn';
-        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-
-        // Event Klik Penggeser
-        prevBtn.addEventListener('click', () => {
-            const cardWidth = grid.querySelector('.product-card').offsetWidth + 20;
-            grid.scrollBy({ left: -cardWidth * 2, behavior: 'smooth' });
+                wrapper.appendChild(prevBtn);
+                wrapper.appendChild(nextBtn);
+            }
         });
-
-        nextBtn.addEventListener('click', () => {
-            const cardWidth = grid.querySelector('.product-card').offsetWidth + 20;
-            grid.scrollBy({ left: cardWidth * 2, behavior: 'smooth' });
-        });
-
-        // Sisipkan tombol ke dalam sub-category
-        sub.style.position = 'relative';
-        sub.appendChild(prevBtn);
-        sub.appendChild(nextBtn);
     });
-});
-document.addEventListener("DOMContentLoaded", function() {
-    const grids = document.querySelectorAll('.product-grid');
-
-    grids.forEach(grid => {
-        if (grid.parentElement.classList.contains('slider-wrapper')) return;
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'slider-wrapper';
-        grid.parentNode.insertBefore(wrapper, grid);
-        wrapper.appendChild(grid);
-
-        const prevBtn = document.createElement('button');
-        prevBtn.type = 'button';
-        prevBtn.className = 'slider-btn slider-btn-prev';
-        prevBtn.innerHTML = '‹';
-
-        const nextBtn = document.createElement('button');
-        nextBtn.type = 'button';
-        nextBtn.className = 'slider-btn slider-btn-next';
-        nextBtn.innerHTML = '›';
-
-        prevBtn.onclick = (e) => {
-            e.preventDefault();
-            const card = grid.querySelector('.product-card');
-            const amount = card ? (card.offsetWidth + 22) * 2 : 300;
-            grid.scrollBy({ left: -amount, behavior: 'smooth' });
-        };
-
-        nextBtn.onclick = (e) => {
-            e.preventDefault();
-            const card = grid.querySelector('.product-card');
-            const amount = card ? (card.offsetWidth + 22) * 2 : 300;
-            grid.scrollBy({ left: amount, behavior: 'smooth' });
-        };
-
-        wrapper.appendChild(prevBtn);
-        wrapper.appendChild(nextBtn);
-    });
-});
-
 </script>
 </body>
 </html>
