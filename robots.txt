@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://atabanfashion.github.io/Ataban-Fashion/sitemap.xml
