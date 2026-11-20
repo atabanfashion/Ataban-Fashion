@@ -1832,6 +1832,41 @@ footer {
     }
 }
 
+
+/* KHUSUS ANIMASI */
+/* Sembunyikan kursor standar (opsional) */
+body {
+  /* cursor: none; */ 
+}
+
+/* Styling untuk setiap titik jejak kursor */
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #d4af37, #d4af37);
+  border-radius: 50%;
+  pointer-events: none; /* Agar tidak mengganggu klik mouse */
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  animation: fadeOut 0.5s forwards ease-out;
+}
+
+/* Animasi menghilang dan mengecil */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+}
+
+
     </style>
 </head>
 <body>
@@ -1841,6 +1876,7 @@ footer {
         <i class="fas fa-pen"></i> Mode Edit: OFF
     </div>
 
+    
     <!-- Input File Tersembunyi untuk Ganti Gambar -->
     <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
@@ -1945,7 +1981,7 @@ footer {
 <section id="produk" class="section">
     <h2 class="section-title editable-text reveal">Koleksi Produk</h2>
    <div class="katalog-banner-container reveal">
-    <a href="collection/katalog.html" class="katalog-card-link">
+    <a href="collection/katalogoke.html" class="katalog-card-link">
         <div class="katalog-card-text">
             <span class="katalog-tag">Exclusive Collection</span>
             <h3 class="katalog-title">Katalog Lengkap Koleksi ATABAN</h3>
@@ -2362,6 +2398,27 @@ footer {
             }
             this.value = '';
         });
+        window.addEventListener('mousemove', (e) => {
+  // Ambil koordinat posisi kursor
+  const x = e.clientX;
+  const y = e.clientY;
+
+  // Buat elemen div baru untuk setiap titik jejak
+  const trail = document.createElement('div');
+  trail.classList.add('cursor-trail');
+  
+  // Tentukan posisi titik berdasarkan posisi mouse
+  trail.style.left = `${x}px`;
+  trail.style.top = `${y}px`;
+
+  // Masukkan ke dalam body HTML
+  document.body.appendChild(trail);
+
+  // Hapus elemen setelah animasinya selesai (0.5 detik) agar tidak menumpuk di memori
+  setTimeout(() => {
+    trail.remove();
+  }, 500);
+});
     </script>
 </body>
 </html>
